@@ -8,7 +8,7 @@ package aufgabe1;
  */
 public class ArrayFrequencyTable extends AbstractFrequencyTable {
     private int size = 0;
-    private Word[] fqTable;
+    private Word[]  fqTable;
     private final int DEFAULT_SIZE = 100;
 
     public ArrayFrequencyTable() {
@@ -23,25 +23,23 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
     @Override
     public final void clear() {
         // throw muss auskommentiert werden!
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
- 
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Ihr Code:
         fqTable = new Word[DEFAULT_SIZE];
         size = 0;
     }
 
     @Override
     public void add(String w, int f) {
-        
         // throw muss auskommentiert werden!
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Word word = new Word(w, f);
         if (size == 0) {
             fqTable[0] = word;
             size++;
         } else {
             int c = 0;
-            for (Word wo: fqTable) {
+            for (Word wo : fqTable) {
                 if (w.equals(wo.getWord())) {
                     wo.addFrequency(f);
                 } else if (c == size - 1) {
@@ -57,7 +55,7 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
     @Override
     public Word get(int pos) {
         // throw muss auskommentiert werden!
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         if (size < pos + 1) {
             return null;
         } else {
@@ -72,9 +70,8 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
 
     @Override
     public int get(String w) {
-        // throw muss auskommentiert werden!
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        for (Word word: fqTable) {
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Word word : fqTable) {
             if (word.getWord().equals(w)) {
                 return word.getFrequency();
             }
@@ -84,7 +81,7 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
     public void bubbleSort(Word[] words, int size) {
         Word temp;
         for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size - i - 1; j++) {
+            for (int j = 0; j < size - i + 1; j++) {
                 if (words[j].getFrequency() < words[j + 1].getFrequency()) {
                     temp = words[j];
                     words[j] = words[j + 1];

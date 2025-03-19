@@ -46,7 +46,7 @@ public class ArrayFrequencyTable_Test {
 		System.out.println("Ist:  " + tab1.get("abc") +  "\n");
 		
 		System.out.println("Soll: {Test:3, ein:2, das:1, ist:1, } size = 4");
-		System.out.println("Ist:  " + tab1 +  "\n");
+		System.out.println("Ist:  " + tab1.toString() +  "\n");
 		
 		// Test von addAll:
 		FrequencyTable tab2 = new ArrayFrequencyTable();
@@ -57,12 +57,12 @@ public class ArrayFrequencyTable_Test {
 		tab2.add("Test",2);			
 		tab1.addAll(tab2);
 		System.out.println("Soll: {ist:5, Test:5, das:3, ein:2, kurzer:1, Text:1, } size = 6");
-		System.out.println("Ist:  " + tab1 +  "\n");
+		System.out.println("Ist:  " + tab1.toString() +  "\n");
 
 		// Test von collectNMostFrequent:
 		tab1.collectNMostFrequent(3, tab2);
 		System.out.println("Soll: {ist:5, Test:5, das:3, } size = 3");
-		System.out.println("Ist:  " + tab2 +  "\n");
+		System.out.println("Ist:  " + tab2.toString() +  "\n");
 	}
 	
 	private static void test2() throws FileNotFoundException, IOException {
