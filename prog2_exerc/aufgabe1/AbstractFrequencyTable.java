@@ -5,6 +5,9 @@ package aufgabe1;
  * @author oliverbittel
  * @author Oliver Haase
  */
+
+ // TODO: Implement void addAll(FrequencyTable fq); and void collectNMostFrequent(int n, FrequencyTable fq);
+ 
 public abstract class AbstractFrequencyTable implements FrequencyTable {
 	@Override
 	public boolean isEmpty() {
