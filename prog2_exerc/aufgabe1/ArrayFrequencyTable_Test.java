@@ -77,11 +77,11 @@ public class ArrayFrequencyTable_Test {
 		while ((line = in.readLine()) != null) {
 			String[] wf = line.split("[^a-z^A-Z^ß^ä^ö^ü^Ä^Ö^Ü]+");
 			for (String w: wf) {
-				if (w.length() == 0 || w.length() == 1)
+				if (w.length() == 0 || w.length() == 1) 
 					continue;
-				System.out.println(w);
+				//System.out.println(w);
 				// Ihr Code:
-
+				tab.add(w);
 			}
 		}	
 		
@@ -91,7 +91,11 @@ public class ArrayFrequencyTable_Test {
 		// Ausgabe der 100 häufigsten Wörter:
 		System.out.println("100 häufigste Wörter:");
 		// Ihr Code
+		int n = 100;
+		FrequencyTable tab3 = new ArrayFrequencyTable();
+		tab.collectNMostFrequent(100, tab3);
 		
+		System.out.println(tab3.toString());
 		System.out.println("");		
 		System.out.println("Benötigte Zeit in msec: " + elapsedTime);
 	}
