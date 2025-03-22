@@ -2,11 +2,11 @@ package aufgabe1;
 
 /**
  *
- * @author oliverbittel
- * @author Oliver Haase
+ * @author Alexander Engelhardt
+ * @author Timothy Drexler
  */
 
- // TODO: Implement void addAll(FrequencyTable fq); and void collectNMostFrequent(int n, FrequencyTable fq);
+ // TODO: Implement void collectNMostFrequent(int n, FrequencyTable fq);
  
 public abstract class AbstractFrequencyTable implements FrequencyTable {
 	@Override
@@ -21,19 +21,45 @@ public abstract class AbstractFrequencyTable implements FrequencyTable {
 
 	@Override
 	public void addAll(FrequencyTable fq) {
-		// Ihr Code:
+
+		if (!fq.isEmpty()) {
+			for (int i = 0; i < fq.size(); i++) {
+				String w = fq.get(i).getWord();
+				int f = fq.get(w);
+				this.add(w, f);
+			}
+		}
 	}
 
 	@Override
 	public void collectNMostFrequent(int n, FrequencyTable fq) {
-		// Ihr Code:
+		if (!fq.isEmpty()) {
+			fq.clear();
+			if (this.size() < n) {
+				fq.addAll(this);
+			} else {
+				for (int i = 0; i < n; i++) {
+					String w = this.get(i).getWord();
+					int f = this.get(w);
+					fq.add(w, f);
+				}
+			}
+		}
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder("{");
-		// Ihr Code:
-
+		
+		for (int i = 0; i < this.size(); i++) {
+			s.append(get(i).getWord());
+			s.append(":");
+			s.append(get(i).getFrequency());
+			s.append(", ");
+		}
+		s.append("} size = ");
+		s.append(this.size());
+		//s.append()
 		return s.toString();
 	}
 }

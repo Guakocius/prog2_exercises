@@ -2,11 +2,11 @@ package aufgabe1;
 
 /**
  * Klasse für Wörter mit ihren Häufigkeiten.
- * @author oliverbittel
- * @author Oliver Haase
+ * @author Alexander Engelhardt
+ * @author Timothy Drexel
  */
 public class Word {
-	final private String word;
+	private final String word;
 	private int frequency;
 	
 	/**
