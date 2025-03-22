@@ -8,8 +8,8 @@ import java.nio.charset.StandardCharsets;
 
 /**
  *
- * @author oliverbittel
- * @author Oliver Haase
+ * @author Alexander Engelhardt
+ * @author Timothy Drexler
  */
 public class ArrayFrequencyTable_Test {
 	

@@ -2,8 +2,8 @@ package aufgabe1;
 
 /**
  *
- * @author oliverbittel
- * @author Oliver Haase
+ * @author Alexander Engelhardt 
+ * @author Timothy Drexler
  */
 public interface FrequencyTable {
 	/**
