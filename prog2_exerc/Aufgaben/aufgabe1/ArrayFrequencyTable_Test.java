@@ -9,10 +9,7 @@ import java.nio.charset.StandardCharsets;
 /**
  *
  * @author Alexander Engelhardt
-<<<<<<< HEAD:prog2_exerc/aufgabe1/ArrayFrequencyTable_Test.java
-=======
  *
->>>>>>> 196ed65 (added my changes):prog2_exerc/Aufgaben/aufgabe1/ArrayFrequencyTable_Test.java
  * @author Timothy Drexler
  */
 public class ArrayFrequencyTable_Test {
@@ -83,15 +80,9 @@ public class ArrayFrequencyTable_Test {
 			for (String w: wf) {
 				if (w.length() == 0 || w.length() == 1) 
 					continue;
-<<<<<<< HEAD:prog2_exerc/aufgabe1/ArrayFrequencyTable_Test.java
 				//System.out.println(w);
 				// Ihr Code:
 				tab.add(w);
-=======
-				// System.out.println(w);
-				// Ihr Code:
-                tab.add(w);
->>>>>>> 196ed65 (added my changes):prog2_exerc/Aufgaben/aufgabe1/ArrayFrequencyTable_Test.java
 			}
 		}	
 		
@@ -101,18 +92,10 @@ public class ArrayFrequencyTable_Test {
 		// Ausgabe der 100 häufigsten Wörter:
 		System.out.println("100 häufigste Wörter:");
 		// Ihr Code
-<<<<<<< HEAD:prog2_exerc/aufgabe1/ArrayFrequencyTable_Test.java
-		int n = 100;
-		FrequencyTable tab3 = new ArrayFrequencyTable();
-		tab.collectNMostFrequent(100, tab3);
-		
-		System.out.println(tab3.toString());
-=======
         FrequencyTable tab3 = new ArrayFrequencyTable();
         tab.collectNMostFrequent(100, tab3);
 		System.out.println("tab3: " + tab3.toString());
 
->>>>>>> 196ed65 (added my changes):prog2_exerc/Aufgaben/aufgabe1/ArrayFrequencyTable_Test.java
 		System.out.println("");		
 		System.out.println("Benötigte Zeit in msec: " + elapsedTime);
 	}
