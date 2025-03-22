@@ -49,7 +49,11 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
                     break;
                 } else if (wo == null) {
                     break;
+<<<<<<< HEAD:prog2_exerc/aufgabe1/ArrayFrequencyTable.java
                 } else if (Objects.requireNonNull(wo.getWord().equals(w))) {
+=======
+                } else if (wo.getWord().equals(w)) {
+>>>>>>> 196ed65 (added my changes):prog2_exerc/Aufgaben/aufgabe1/ArrayFrequencyTable.java
                     fqTable[c].addFrequency(f);
                     if (c > 0) {
                         sort(c);
@@ -66,7 +70,10 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
     public Word get(int pos) {
         // throw muss auskommentiert werden!
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+<<<<<<< HEAD:prog2_exerc/aufgabe1/ArrayFrequencyTable.java
         
+=======
+>>>>>>> 196ed65 (added my changes):prog2_exerc/Aufgaben/aufgabe1/ArrayFrequencyTable.java
         return fqTable[pos];
     }
 
@@ -82,6 +89,7 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
         }
         return 0;
     }
+<<<<<<< HEAD:prog2_exerc/aufgabe1/ArrayFrequencyTable.java
     public void sort(int size) {
         Word temp;
         try {
@@ -93,6 +101,15 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
             }
         } catch (Exception e) {
             throw new NullPointerException();
+=======
+
+    public void sort(int pos) {
+        while (pos != 0 && fqTable[pos].getFrequency() > fqTable[pos - 1].getFrequency()) {
+            Word temp = fqTable[pos];
+            fqTable[pos] = fqTable[pos - 1];
+            fqTable[pos - 1] = temp;
+            pos --;
+>>>>>>> 196ed65 (added my changes):prog2_exerc/Aufgaben/aufgabe1/ArrayFrequencyTable.java
         }
         
           
