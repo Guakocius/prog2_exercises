@@ -24,19 +24,13 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
 
     @Override
     public final void clear() {
-        // throw muss auskommentiert werden!
-        // throw new UnsupportedOperationException("Not supported yet.");
-        // To change body of generated methods, choose Tools | Templates.
         fqTable = new Word[DEFAULT_SIZE];
         size = 0;
     }
 
     @Override
     public void add(String w, int f) {
-        // throw muss auskommentiert werden!
-        // throw new UnsupportedOperationException("Not supported yet.");
-        // To change body of generated methods, choose Tools | Templates.
-        Word word = new Word(w, f);
+       Word word = new Word(w, f);
         if (size == 0) {
             fqTable[0] = word;
             size++;
@@ -64,16 +58,11 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
 
     @Override
     public Word get(int pos) {
-        // throw muss auskommentiert werden!
-        // throw new UnsupportedOperationException("Not supported yet.");
-        //To change body of generated methods, choose Tools | Templates.
         return fqTable[pos];
     }
 
     @Override
     public int get(String w) {
-        // throw new UnsupportedOperationException("Not supported yet.");
-        //To change body of generated methods, choose Tools | Templates.
         for (Word word : fqTable) {
             if (word == null) {
                 continue;

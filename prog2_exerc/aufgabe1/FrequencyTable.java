@@ -2,12 +2,7 @@ package aufgabe1;
 
 /**
  *
-<<<<<<< HEAD:prog2_exerc/aufgabe1/FrequencyTable.java
  * @author Alexander Engelhardt 
-=======
- * @author Alexander Engelhardt
- *
->>>>>>> 196ed65 (added my changes):prog2_exerc/Aufgaben/aufgabe1/FrequencyTable.java
  * @author Timothy Drexler
  */
 public interface FrequencyTable {
