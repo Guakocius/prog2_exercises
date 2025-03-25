@@ -1,6 +1,5 @@
 package aufgabe2;
 
-import java.util.Objects;
 import java.util.Arrays;
 
 /**
@@ -13,6 +12,20 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
     private int size = 0;
     private Word[]  fqTable;
     private static final int DEFAULT_SIZE = 100;
+
+    private static class Node {
+        private Node prev;
+        private Node next;
+        private Word word;
+
+        public Node(Word w, Node n, Node p) {
+            this.word = w;
+            this.prev = p;
+            this.next = n;
+        }
+    }
+    private Node begin;
+    private Node end;
 
     public LinkedListFrequencyTable() {
         clear();

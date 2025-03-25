@@ -11,7 +11,7 @@ public abstract class AbstractFrequencyTable implements FrequencyTable {
 	public boolean isEmpty() {
 		return this.size() == 0;
 	}
-	
+
 	@Override
     public void add(String w) {
 		add(w, 1);
