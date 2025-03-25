@@ -1,6 +1,7 @@
 package aufgabe1;
 
 import java.util.Objects;
+import java.util.Arrays;
 
 /**
  *
@@ -30,6 +31,9 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
 
     @Override
     public void add(String w, int f) {
+        if (size >= fqTable.length) {
+            fqTable = Arrays.copyOf(fqTable, size * 2);}
+
        Word word = new Word(w, f);
         if (size == 0) {
             fqTable[0] = word;
@@ -37,7 +41,7 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
         } else if (size > 0) {
             int c = 0;
             for (Word wo : fqTable) {
-                if (c == size && (size + 1) <= DEFAULT_SIZE) {
+                if (c == size) {
                     fqTable[size] = word;
                     sort(size);
                     size++;
@@ -79,7 +83,7 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
             Word temp = fqTable[pos];
             fqTable[pos] = fqTable[pos - 1];
             fqTable[pos - 1] = temp;
-            pos --;
+            pos--;
         }
     }
 }
