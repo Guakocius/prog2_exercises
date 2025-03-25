@@ -1,12 +1,10 @@
 package aufgabe1;
 
-import java.util.Objects;
 import java.util.Arrays;
 
 /**
  *
  * @author Alexander Engelhardt
- *
  * @author Timothy Drexler
  */
 public class ArrayFrequencyTable extends AbstractFrequencyTable {

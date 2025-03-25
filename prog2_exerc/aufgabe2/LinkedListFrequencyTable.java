@@ -5,7 +5,6 @@ import java.util.Arrays;
 /**
  *
  * @author Alexander Engelhardt
- *
  * @author Timothy Drexler
  */
 public class LinkedListFrequencyTable extends AbstractFrequencyTable {

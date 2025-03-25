@@ -3,17 +3,12 @@ package aufgabe1;
 /**
  * Klasse für Wörter mit ihren Häufigkeiten.
  * @author Alexander Engelhardt
-<<<<<<< HEAD:prog2_exerc/aufgabe1/Word.java
  * @author Timothy Drexel
-=======
- *
- * @author Timothy Drexler
->>>>>>> 196ed65 (added my changes):prog2_exerc/Aufgaben/aufgabe1/Word.java
  */
 public class Word {
 	private final String word;
 	private int frequency;
-	
+
 	/**
 	 * Konstruktor.
 	 * @param word Wort
@@ -39,7 +34,7 @@ public class Word {
 	public int getFrequency() {
 		return frequency;
 	}
-	
+
 	/**
 	 * Addiert zur H&auml;ufgkeit f dazu.
 	 * @param f H&auml;ufgkeits&auml;nderung.
