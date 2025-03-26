@@ -22,10 +22,15 @@ public class LinkedListFrequencyTable_Test {
 		// Test von add:
 		FrequencyTable tab1 = new LinkedListFrequencyTable();
 		tab1.add("das");
+		System.out.println(tab1.toString());
 		tab1.add("ist");
+		System.out.println(tab1.toString());
 		tab1.add("ein",2);
+		System.out.println(tab1.toString());
 		tab1.add("Test");
+		System.out.println(tab1.toString());
 		tab1.add("Test",2);
+		System.out.println(tab1.toString());
 
 		System.out.println("Soll: Test:3");
 		System.out.println("Ist:  " + tab1.get(0) + "\n");

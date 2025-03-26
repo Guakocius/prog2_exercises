@@ -30,7 +30,8 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
     @Override
     public void add(String w, int f) {
         if (size >= fqTable.length) {
-            fqTable = Arrays.copyOf(fqTable, size * 2);}
+            fqTable = Arrays.copyOf(fqTable, size * 2);
+        }
 
        Word word = new Word(w, f);
         if (size == 0) {
