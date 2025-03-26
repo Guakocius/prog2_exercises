@@ -2,7 +2,7 @@ package aufgabe2;
 
 /**
  * Klasse für Wörter mit ihren Häufigkeiten.
- * @author Timothy Drexel
+ * @author Alexander Engelhardt
  * @author Timothy Drexler
  */
 public class Word {
