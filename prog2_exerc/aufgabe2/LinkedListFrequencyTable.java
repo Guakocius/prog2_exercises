@@ -32,9 +32,8 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
 
     @Override
     public final void clear() {
-        b1 = new Node(null, end, null);
+        b1 = new Node(null, e1, null);
         e1 = new Node(null, null, b1);
-        b1.next = e1;
         size = 0;
     }
 
@@ -43,25 +42,35 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
         Word wo = new Word(w, f);
 
         if (size == 0) {
-            Node n = new Node(wo, e1, b1);
-            b1.next = n;
-            e1.prev = n;
+            Node r = new Node(wo, e1, b1);
+            b1.next = r;
+            e1.prev = r;
             size++;
-        } else if (size > 0) {
-            int c = 0;
-            for (Node n = b1.next; !n.equals(e1); n = n.next) {
-                if (c == size) {
-
-                }
-                if (n.word.getWord().equals(w)) {
-                    n.word.addFrequency(f);
-                    sort(n);
+        } else {
+            Node e = e1.prev;
+            boolean freqAdd = false;
+            for (int i = size - 1; i >= 0; i--) {
+                // System.out.println("In for add()-LOOP");
+                if (e.word.getWord().equals(w)) {
+                    e.word.addFrequency(f);
+                    // System.out.println("adding f & sorting in add()");
+                    sort(e);
+                    // System.out.println("End sort(e)");
+                    freqAdd = true;
                     break;
                 }
+                e = e.prev;
             }
-            Node nn = new Node(wo, e1, e1.prev);
-            size++;
-            sort(nn);
+            if (freqAdd == false) {
+                Node r = new Node(wo, e1, e1.prev);
+
+                e1.prev.next = r;
+                // System.out.println("prev: " + e1.prev.word.getWord());
+                e1.prev = r;
+                size++;
+                // System.out.println("Sort r...");
+                sort(r);
+            }
         }
     }
 
@@ -76,38 +85,46 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
                 n = n.next;
             }
         }
+        if (pos >= size) return null;
+        int counter = size() - 1;
+        for (Node e = e1.prev; !e.equals(b1); e = e.prev) {
+            if (counter == pos) return e.word;
+            counter--;
+        }
+        // System.out.println("Word not found");
         return null;
     }
     @Override
     public int get(String w) {
         Node n = b1.next;
-        
-        for (int i = 0; i < size; i++) {
 
+        for (int i = 0; i < size(); i++) {
             if (n.word.getWord().equals(w)) {
                 return n.word.getFrequency();
-            } else n = n.next;
+            } else {
+                n = n.next;
+            }
         }
         return 0;
     }
 
-// TODO: Remove NullPointerException (word or freq or (word and freq) is null)
     public void sort(Node n) {
+        int freq = n.word.getFrequency();
         Word t = n.word;
-        Node nt = n.prev;
+        Node p = n.prev;
+        while (!p.equals(b1) && p.word.getFrequency() < freq) {
+            // System.out.println("sorting...");
+            // System.out.println("Setting:" + p.next.word.getWord() + " to " + p.word.getWord());
+            p.next.word = p.word;
+            p = p.prev;
 
-        while (!nt.equals(b1) && nt.prev.word.getFrequency() < t.getFrequency()) {
-            n.word = nt.word;
-            nt = nt.prev;
         }
-        nt.word = t;
-    
-        if (nt.prev.equals(b1)) {
-            b1 = nt;
+        if (p.equals(b1)) {
+            // System.out.println("replace " + b1.next.word.getWord() +" with: " + t);
+            b1.next.word = t;
+        } else {
+            p.next.word = t;
         }
-            
-    
-        
+
     }
-    
 }

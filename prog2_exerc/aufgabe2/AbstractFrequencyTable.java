@@ -48,6 +48,7 @@ public abstract class AbstractFrequencyTable implements FrequencyTable {
 		// Ihr Code:
 
         for (int i = 0; i < this.size(); i++) {
+            //System.out.println("Appending num: " + i);
             s.append(this.get(i).toString());
             s.append(", ");
         }
