@@ -19,7 +19,7 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
             this.next = n;
         }
     }
-    private Node begin, end, b1, e1;
+    private Node begin, end;
 
     public LinkedListFrequencyTable() {
         clear();
@@ -32,8 +32,9 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
 
     @Override
     public final void clear() {
-        b1 = new Node(null, e1, begin);
-        e1 = new Node(null, end, b1);
+        begin = new Node(null, null, null);
+        end = new Node(null, null, begin);
+        begin.next = end;
         size = 0;
     }
 
@@ -42,29 +43,29 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
         Word wo = new Word(w, f);
 
         if (size == 0) {
-            Node r = new Node(wo, e1, b1);
-            b1.next = r;
-            e1.prev = r;
+            Node r = new Node(wo, end, begin);
+            begin.next = r;
+            end.prev = r;
             size++;
         } else {
-            Node e = e1.prev;
+            Node e = end.prev;
             boolean freqAdd = false;
             for (int i = size - 1; i >= 0; i--) {
                 if (e.word.getWord().equals(w)) {
                     e.word.addFrequency(f);
-                    sort(e);
+                    moveToLeft(e);
                     freqAdd = true;
                     break;
                 }
                 e = e.prev;
             }
             if (freqAdd == false) {
-                Node r = new Node(wo, e1, e1.prev);
+                Node r = new Node(wo, end, end.prev);
 
-                e1.prev.next = r;
-                e1.prev = r;
+                end.prev.next = r;
+                end.prev = r;
                 size++;
-                sort(r);
+                moveToLeft(r);
             }
         }
     }
@@ -72,7 +73,7 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
     @Override
     public Word get(int pos) {
         if (pos + 1 > size) return null;
-        Node n = b1.next;
+        Node n = begin.next;
         for (int i = 0; i < size; i++) {
             if (i == pos) {
                 return n.word;
@@ -82,7 +83,7 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
         }
         if (pos >= size) return null;
         int counter = size() - 1;
-        for (Node e = e1.prev; !e.equals(b1); e = e.prev) {
+        for (Node e = end.prev; !e.equals(begin); e = e.prev) {
             if (counter == pos) return e.word;
             counter--;
         }
@@ -90,7 +91,7 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
     }
     @Override
     public int get(String w) {
-        Node n = b1.next;
+        Node n = begin.next;
 
         for (int i = 0; i < size(); i++) {
             if (n.word.getWord().equals(w)) {
@@ -102,20 +103,12 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
         return 0;
     }
 
-    public void sort(Node n) {
-        int freq = n.word.getFrequency();
-        Word t = n.word;
-        Node p = n.prev;
-        while (!p.equals(b1) && p.word.getFrequency() < freq) {
-            p.next.word = p.word;
-            p = p.prev;
-
+    public void moveToLeft(Node n) {
+        Word data = n.word;
+        while (n.prev.word != null && n.prev.word.getFrequency() < data.getFrequency()) {
+            n.next.word = n.word;
+            n = n.prev;
         }
-        if (p.equals(b1)) {
-            b1.next.word = t;
-        } else {
-            p.next.word = t;
-        }
-
+        n.word = data;
     }
 }

@@ -67,7 +67,21 @@ public class Evaluator {
         }
         return null; // Fehler beim Auswerten
     }
-
+    //my
+    private static boolean shift() {
+        if (stack[top] == DOLLAR && (token == KL_AUF || isVal(token))) {		// Regel 1 der Parser-Tabelle
+            doShift();
+            return true;
+        } // Ihr Code:
+        // ...
+        else if ((top + 1) < stack.length) {
+            doShift();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     private boolean shift() {
         if (stack[size -1] == DOLLAR && (token == KL_AUF || isVal(token))) {		// Regel 1 der Parser-Tabelle
             doShift();
@@ -78,10 +92,11 @@ public class Evaluator {
             return false;
         }
     }
-
     private static void doShift() {
         // Ihr Code:
-        
+        // ...
+        if ((top + 1) < stack.length) stack[++top] = token;
+        token = tokenizer.nextToken();
     }
 
     private boolean isOp(Object o) {
