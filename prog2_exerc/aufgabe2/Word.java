@@ -12,7 +12,7 @@ public class Word {
 	/**
 	 * Konstruktor.
 	 * @param word Wort
-	 * @param f H&auml;ufgkeit
+	 * @param f H&auml;ufigkeit
 	 */
 	public Word(String word, int f) {
 		this.word = word;
