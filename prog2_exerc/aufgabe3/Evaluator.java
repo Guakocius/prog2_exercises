@@ -81,6 +81,7 @@ public class Evaluator {
     private static void doShift() {
         // Ihr Code:
         // ...
+        //TODO: Fix NullPointerException
         Evaluator e = new Evaluator();
         e.stack[e.size++] = e.token;
         Object shiftToken;
