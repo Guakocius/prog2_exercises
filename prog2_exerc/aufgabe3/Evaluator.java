@@ -1,13 +1,13 @@
 /*
  * class Evaluator
- * repl-Schleife: lese von der Konsole eine Ziele und 
+ * repl-Schleife: lese von der Konsole eine Ziele und
  * werte sie als arithmetischen Ausdruck aus.
  *
  * O. Bittel; 22.03.2018
  * Verbeserung am 11.04.2018: +,-, *, / müssen linksassozoativ sein.
- * Geändert am 13.4.2018: da KEYWORS String-Konstante sind, 
+ * Geändert am 13.4.2018: da KEYWORS String-Konstante sind,
  * reicht Gleichheitsprüfung mit ==.
- * 
+ *
  */
 package aufgabe3;
 
@@ -17,8 +17,8 @@ import static aufgabe3.Tokenizer.*;
 
 /**
  *
- * @author oliverbittel
- * @author Oliver Haase
+ * @author Alexander Engelhardt
+ * @author Timothy Drexler
  */
 
 /**
@@ -81,7 +81,7 @@ public class Evaluator {
 
     private static void doShift() {
         // Ihr Code:
-        // ...
+        
     }
 
     private boolean isOp(Object o) {
@@ -98,7 +98,7 @@ public class Evaluator {
         }
 
         if (stack[size - 3] == KL_AUF && isVal(stack[size - 2]) && stack[size -1] == KL_ZU
-                && (token == KL_ZU || isOp(token) || token == DOLLAR)) {         // Regel 4 der Parser-Tabelle			
+                && (token == KL_ZU || isOp(token) || token == DOLLAR)) {         // Regel 4 der Parser-Tabelle
             doReduceKlValKl();
             return true;
         } // Ihr Code:
@@ -139,6 +139,7 @@ public class Evaluator {
             // ...
             System.out.print(ANSI_BLUE + ">> ");
         }
+        in.close();
     }
 
     /**
