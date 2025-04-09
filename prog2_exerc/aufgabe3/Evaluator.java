@@ -72,7 +72,7 @@ public class Evaluator {
         if (stack[size -1] == DOLLAR && tokenCheck) {		// Regel 1 der Parser-Tabelle
             doShift();
             return true;
-        } // Ihr Code:
+        }
         if (isOp(stack[size - 1]) && tokenCheck) { // Regel 2 der Parser-Tabelle
             doShift();
             return true;
