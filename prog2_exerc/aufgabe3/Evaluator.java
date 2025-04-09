@@ -19,7 +19,6 @@ import java.util.Scanner;
  * @author Alexander Engelhardt
  * @author Timothy Drexler
  */
-
 /**
  * Klasse zum Auswerten von arithmetischen Ausdrücken.
  */
@@ -35,8 +34,8 @@ public class Evaluator {
         stack = new Object[20];
         size = 0;
     }
-
-
+    static final Evaluator e = new Evaluator();
+    //static final Tokenizer t = new Tokenizer(e.token.toString());
     /**
      * Wertet expr als arithmetischen Ausdruck aus.
      *
@@ -59,7 +58,7 @@ public class Evaluator {
             } else if (reduce()) { // Reduce durchführen, falls möglich
                 continue;
             } else if (accept()) { // prüfen ob Ausdruck erfolgreich evaluiert wurde
-                return (Double) stack[size -1];
+                return (Double) stack[size - 1];
             } else {
                 return null; // Fehler beim Auswerten
             }
@@ -69,26 +68,26 @@ public class Evaluator {
 
     private boolean shift() {
         boolean tokenCheck = (token == KL_AUF || isVal(token));
-        if (stack[size -1] == DOLLAR && tokenCheck) {		// Regel 1 der Parser-Tabelle
+        if (stack[size - 1] == DOLLAR && tokenCheck) {		// Regel 1 der Parser-Tabelle
             doShift();
             return true;
         }
-        if (isOp(stack[size - 1]) && tokenCheck) { // Regel 2 der Parser-Tabelle
+        else if (isOp(stack[size - 1]) && tokenCheck) {     // Regel 2 der Parser-Tabelle
             doShift();
             return true;
         }
-        if (stack[size - 1] == KL_AUF && tokenCheck) { // Regel 3 der Parser-Tabelle
+        else if (stack[size - 1] == KL_AUF && tokenCheck) { // Regel 3 der Parser-Tabelle
             doShift();
             return true;
-        } 
-        else {
+        } else {
             return false;
         }
     }
+
     private static void doShift() {
         // Ihr Code:
         //TODO: Fix NullPointerException
-        
+
         /*if () {
             Evaluator e = new Evaluator();
             e.stack[e.size++] = e.token;
@@ -96,7 +95,7 @@ public class Evaluator {
             System.out.println(e);
         }
         System.err.println("Error");
-        */
+         */
     }
 
     private boolean isOp(Object o) {
@@ -112,28 +111,24 @@ public class Evaluator {
             return false;
         }
 
-        if (stack[size - 3] == KL_AUF && isVal(stack[size - 2]) && stack[size -1] == KL_ZU
+        if (stack[size - 3] == KL_AUF && isVal(stack[size - 2]) && stack[size - 1] == KL_ZU
                 && (token == KL_ZU || isOp(token) || token == DOLLAR)) {        // Regel 4 der Parser-Tabelle
             doReduceKlValKl();
             return true;
-        } // Ihr Code:
-        // ...
-        else if (isVal(stack[size - 3]) && isOp(stack[size-2]) && isVal(stack[size-1])
+        } else if (isVal(stack[size - 3]) && isOp(stack[size - 2]) && isVal(stack[size - 1])
                 && (stack[size] == KL_ZU || stack[size] == DOLLAR)) {            // Regel 8 der Parser-Tabelle
             doReduceValOpVal();
             return true;
-        }
-        else if (stack[size-3] == KL_AUF && isVal(stack[size-2])
-                && stack[size-1]==KL_ZU && isOp(stack[size])){                  // Regel 9 der Parser-Tabelle
-            if (stack[size]!=PLUS) {
+        } else if (stack[size - 3] == KL_AUF && isVal(stack[size - 2])
+                && stack[size - 1] == KL_ZU && isOp(stack[size])) {                  // Regel 9 der Parser-Tabelle
+            if (stack[size] != PLUS) {
                 doShift();
                 return true;
             } else {
                 doReduceValOpVal();
                 return true;
             }
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -141,6 +136,10 @@ public class Evaluator {
     private static void doReduceKlValKl() {
         // Ihr Code:
         // ...
+        String regex = e.tokenizer.KL_AUF + e.token + e.tokenizer.KL_ZU;
+
+        
+        
     }
 
     private static void doReduceValOpVal() {
@@ -149,8 +148,7 @@ public class Evaluator {
     }
 
     private static boolean accept() {
-        // Ihr Code:
-        // ...
+
         return false;
     }
 
@@ -178,9 +176,9 @@ public class Evaluator {
      */
     public static void main(String[] args) {
         // Zum Testen, später auskommentieren:
-		String s1 = "1+2";
-		String s2 = "2^10+5";
-		String s3 = "5+2^10";
+        String s1 = "1+2";
+        String s2 = "2^10+5";
+        String s3 = "5+2^10";
         String s4 = "(2+3*4+4)^2";
         String s5 = "(2+3*4+4))*2";
         String s6 = "2+3**4";
@@ -191,8 +189,8 @@ public class Evaluator {
 
         Evaluator evaluator = new Evaluator();
 
-		System.out.println(evaluator.eval(s1));	// 3.0
-		System.out.println(evaluator.eval(s2));	// 1029.0
+        System.out.println(evaluator.eval(s1));	// 3.0
+        System.out.println(evaluator.eval(s2));	// 1029.0
         System.out.println(evaluator.eval(s3));	// 1029.0
         System.out.println(evaluator.eval(s4));	// 324.0
         System.out.println(evaluator.eval(s5));	// null; Syntaxfehler
