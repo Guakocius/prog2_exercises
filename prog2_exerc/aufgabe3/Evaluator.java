@@ -11,9 +11,8 @@
  */
 package aufgabe3;
 
-import java.util.Scanner;
-
 import static aufgabe3.Tokenizer.*;
+import java.util.Scanner;
 
 /**
  *
@@ -69,26 +68,35 @@ public class Evaluator {
     }
 
     private boolean shift() {
-        if (stack[size -1] == DOLLAR && (token == KL_AUF || isVal(token))) {		// Regel 1 der Parser-Tabelle
+        boolean tokenCheck = (token == KL_AUF || isVal(token));
+        if (stack[size -1] == DOLLAR && tokenCheck) {		// Regel 1 der Parser-Tabelle
             doShift();
             return true;
         } // Ihr Code:
-        // ...
+        if (isOp(stack[size - 1]) && tokenCheck) { // Regel 2 der Parser-Tabelle
+            doShift();
+            return true;
+        }
+        if (stack[size - 1] == KL_AUF && tokenCheck) { // Regel 3 der Parser-Tabelle
+            doShift();
+            return true;
+        } 
         else {
             return false;
         }
     }
     private static void doShift() {
         // Ihr Code:
-        // ...
         //TODO: Fix NullPointerException
-        Evaluator e = new Evaluator();
-        e.stack[e.size++] = e.token;
-        Object shiftToken;
-        shiftToken = e.tokenizer.nextToken();
-        e.token = shiftToken;
-        //if ((top + 1) < stack.length) stack[++top] = token;
-        //token = tokenizer.nextToken();
+        
+        /*if () {
+            Evaluator e = new Evaluator();
+            e.stack[e.size++] = e.token;
+            e.tokenizer.nextToken();
+            System.out.println(e);
+        }
+        System.err.println("Error");
+        */
     }
 
     private boolean isOp(Object o) {
