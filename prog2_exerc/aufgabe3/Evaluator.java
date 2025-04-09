@@ -113,12 +113,26 @@ public class Evaluator {
         }
 
         if (stack[size - 3] == KL_AUF && isVal(stack[size - 2]) && stack[size -1] == KL_ZU
-                && (token == KL_ZU || isOp(token) || token == DOLLAR)) {         // Regel 4 der Parser-Tabelle
+                && (token == KL_ZU || isOp(token) || token == DOLLAR)) {        // Regel 4 der Parser-Tabelle
             doReduceKlValKl();
             return true;
         } // Ihr Code:
         // ...
-
+        else if (isVal(stack[size - 3]) && isOp(stack[size-2]) && isVal(stack[size-1])
+                && (stack[size] == KL_ZU || stack[size] == DOLLAR)) {            // Regel 8 der Parser-Tabelle
+            doReduceValOpVal();
+            return true;
+        }
+        else if (stack[size-3] == KL_AUF && isVal(stack[size-2])
+                && stack[size-1]==KL_ZU && isOp(stack[size])){                  // Regel 9 der Parser-Tabelle
+            if (stack[size]!=PLUS) {
+                doShift();
+                return true;
+            } else {
+                doReduceValOpVal();
+                return true;
+            }
+        }
         else {
             return false;
         }
