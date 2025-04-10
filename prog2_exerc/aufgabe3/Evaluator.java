@@ -25,10 +25,10 @@ import java.util.Scanner;
 public class Evaluator {
 
     private static final String ANSI_BLUE = "\u001B[34m";
-    private final Object[] stack;		    // Stack
-    private int size;	    				// Index des obersten Kellerelements
-    private Object token;					// Aktuelles Token
-    private Tokenizer tokenizer;			// Zerlegt String-Eingabe in Tokens
+    private static Object[] stack;		    // Stack
+    private static int size;	    				// Index des obersten Kellerelements
+    private static Object token;					// Aktuelles Token
+    private static Tokenizer tokenizer;			// Zerlegt String-Eingabe in Tokens
 
     public Evaluator() {
         stack = new Object[20];
@@ -42,7 +42,7 @@ public class Evaluator {
      * @param expr Arthmetischer Ausdruck als String
      * @return Wert des Ausdrucks oder null, falls der Ausdruck fehlerhaft ist.
      */
-    public Double eval(String expr) {
+    public static Double eval(String expr) {
         // Dollar in leeren Stack ablegen:
         size = 0;
         stack[size++] = DOLLAR;
@@ -66,7 +66,7 @@ public class Evaluator {
         return null; // Fehler beim Auswerten
     }
 
-    private boolean shift() {
+    private static boolean shift() {
         boolean tokenCheck = (token == KL_AUF || isVal(token));
         if (stack[size - 1] == DOLLAR && tokenCheck) {		// Regel 1 der Parser-Tabelle
             doShift();
@@ -98,15 +98,15 @@ public class Evaluator {
          */
     }
 
-    private boolean isOp(Object o) {
+    private static boolean isOp(Object o) {
         return (o == PLUS || o == MULT || o == POWER);
     }
 
-    private boolean isVal(Object o) {
+    private static boolean isVal(Object o) {
         return o instanceof Double;
     }
 
-    private boolean reduce() {
+    private static boolean reduce() {
         if (size < 4) {
             return false;
         }
@@ -156,7 +156,7 @@ public class Evaluator {
      * Liest von der Konsole eine Folge von Zeilen, wertet jede Zeile als
      * Ausdruck aus und gibt seinen Wert aus. (repl = read-evaluate-print-loop).
      */
-    public void repl() {
+    public static void repl() {
         Scanner in = new Scanner(System.in);
         System.out.print(ANSI_BLUE + ">> ");
 
