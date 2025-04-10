@@ -12,6 +12,8 @@
 package aufgabe3;
 
 import static aufgabe3.Tokenizer.*;
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -52,7 +54,7 @@ public class Evaluator {
         token = tokenizer.nextToken();
 
         while (token != null) {
-            //System.out.println("token = " + token);
+            // System.out.println("token = " + token);
             if (shift()) { // Shift durchführen, falls möglich
                 continue;
             } else if (reduce()) { // Reduce durchführen, falls möglich
@@ -68,34 +70,31 @@ public class Evaluator {
 
     private static boolean shift() {
         boolean tokenCheck = (token == KL_AUF || isVal(token));
-        if (stack[size - 1] == DOLLAR && tokenCheck) {		// Regel 1 der Parser-Tabelle
+        if ((stack[size - 1] == DOLLAR && tokenCheck) || (isOp(stack[size - 1]) && tokenCheck)
+            || (stack[size - 1] == KL_AUF && tokenCheck)) {		// Regel 1, 2 + 3 der Parser-Tabelle
             doShift();
             return true;
         }
-        else if (isOp(stack[size - 1]) && tokenCheck) {     // Regel 2 der Parser-Tabelle
+        else if (stack[size - 2] == DOLLAR && isVal(stack[size - 1]) && isOp(token)) { // Regel 6 der Parser-Tabelle
             doShift();
             return true;
         }
-        else if (stack[size - 1] == KL_AUF && tokenCheck) { // Regel 3 der Parser-Tabelle
+        else if (stack[size - 2] == KL_AUF && isVal(stack[size - 1]) &&
+            (isOp(token) || token == KL_ZU)) { // Regel 7 der Parser-Tabelle
             doShift();
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
 
     private static void doShift() {
-        // Ihr Code:
-        //TODO: Fix NullPointerException
-
-        /*if () {
-            Evaluator e = new Evaluator();
-            e.stack[e.size++] = e.token;
-            e.tokenizer.nextToken();
-            System.out.println(e);
+        if (size >= stack.length) {
+            stack = Arrays.copyOf(stack, size * 2);
         }
-        System.err.println("Error");
-         */
+        stack[size++] = token;
+        token = tokenizer.nextToken();
     }
 
     private static boolean isOp(Object o) {
@@ -116,12 +115,12 @@ public class Evaluator {
             doReduceKlValKl();
             return true;
         } else if (isVal(stack[size - 3]) && isOp(stack[size - 2]) && isVal(stack[size - 1])
-                && (stack[size] == KL_ZU || stack[size] == DOLLAR)) {            // Regel 8 der Parser-Tabelle
+                && (token == KL_ZU || token == DOLLAR)) {            // Regel 8 der Parser-Tabelle
             doReduceValOpVal();
             return true;
-        } else if (stack[size - 3] == KL_AUF && isVal(stack[size - 2])
-                && stack[size - 1] == KL_ZU && isOp(stack[size])) {                  // Regel 9 der Parser-Tabelle
-            if (stack[size] != PLUS) {
+        } else if (isVal(stack[size - 3]) && isOp(stack[size - 2])
+                && isVal(stack[size - 1]) && isOp(token)) {                  // Regel 9 der Parser-Tabelle
+            if (token != PLUS && stack[size - 2] == PLUS) {
                 doShift();
                 return true;
             } else {
@@ -134,21 +133,40 @@ public class Evaluator {
     }
 
     private static void doReduceKlValKl() {
-        // Ihr Code:
-        // ...
-        String regex = e.tokenizer.KL_AUF + e.token + e.tokenizer.KL_ZU;
-
-        
-        
+        Object d = stack[size - 2];
+        stack[size-3] = d;
+        stack[size-2] = null;
+        stack[size-1] = null;
+        size -= 2;
     }
 
     private static void doReduceValOpVal() {
-        // Ihr Code:
-        // ...
+        if (stack[size - 2]==PLUS) {
+            Object add = (Double)stack[size - 3] + (Double)stack[size - 1];
+            stack[size - 3] = add;
+        } else if (stack[size - 2]==MULT) {
+            Object mult = (Double)stack[size - 3] * (Double)stack[size - 1];
+            stack[size - 3] = mult;
+        } else if (stack[size - 2]==POWER){
+            Object p = (Double)stack[size - 3];
+            Object power = p;
+            int l = ((Double) stack[size - 1]).intValue();
+            for (int i = 0; i < l - 1; i++) {
+                power = (Double)power * (Double)p;
+            }
+            stack[size - 3] = power;
+        }
+        stack[size - 2] = token;
+        stack[size - 1] = null;
+        size -= 2;
     }
 
     private static boolean accept() {
-
+        if (size == 2) {
+            if (stack[size - 2] == DOLLAR && isVal(stack[size - 1]) && token == DOLLAR) {
+                return true;
+            }
+        }
         return false;
     }
 
