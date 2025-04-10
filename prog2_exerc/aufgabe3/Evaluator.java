@@ -123,7 +123,12 @@ public class Evaluator {
             if (token != PLUS && stack[size - 2] == PLUS) {
                 doShift();
                 return true;
-            } else {
+            }
+            else if (token == POWER && stack[size - 2] == POWER) {
+                doShift();
+                return true;
+            }
+            else {
                 doReduceValOpVal();
                 return true;
             }
@@ -213,7 +218,7 @@ public class Evaluator {
         System.out.println(evaluator.eval(s4));	// 324.0
         System.out.println(evaluator.eval(s5));	// null; Syntaxfehler
         System.out.println(evaluator.eval(s6));	// null; Syntaxfehler
-        System.out.println(evaluator.eval(s7));	// 64.0
+        System.out.println(evaluator.eval(s7));	// 256.0
         System.out.println(evaluator.eval(s8));	// 20.0
         System.out.println(evaluator.eval(s9));	// 21.0
         System.out.println(evaluator.eval(s10));	// 21.0
