@@ -187,6 +187,14 @@ public class Evaluator {
             String line = in.nextLine();
             // Ihr Code:
             // ...
+            if (line.equals("end")) {
+              System.out.println("bye!");
+              return;
+            }
+            else if (eval(line)==null) System.out.println("!!! error");
+            else {
+                System.out.println(eval(line));
+            }
             System.out.print(ANSI_BLUE + ">> ");
         }
         in.close();
@@ -199,30 +207,30 @@ public class Evaluator {
      */
     public static void main(String[] args) {
         // Zum Testen, später auskommentieren:
-        String s1 = "1+2";
-        String s2 = "2^10+5";
-        String s3 = "5+2^10";
-        String s4 = "(2+3*4+4)^2";
-        String s5 = "(2+3*4+4))*2";
-        String s6 = "2+3**4";
-        String s7 = "2^2^3";
-        String s8 = "2^2*5";
-        String s9 = "1+(2+(3+(4+(5+6))))";
-        String s10 = "1+2+3+4+5+6";
+        // String s1 = "1+2";
+        // String s2 = "2^10+5";
+        // String s3 = "5+2^10";
+        // String s4 = "(2+3*4+4)^2";
+        // String s5 = "(2+3*4+4))*2";
+        // String s6 = "2+3**4";
+        // String s7 = "2^2^3";
+        // String s8 = "2^2*5";
+        // String s9 = "1+(2+(3+(4+(5+6))))";
+        // String s10 = "1+2+3+4+5+6";
 
         Evaluator evaluator = new Evaluator();
 
-        System.out.println(evaluator.eval(s1));	// 3.0
-        System.out.println(evaluator.eval(s2));	// 1029.0
-        System.out.println(evaluator.eval(s3));	// 1029.0
-        System.out.println(evaluator.eval(s4));	// 324.0
-        System.out.println(evaluator.eval(s5));	// null; Syntaxfehler
-        System.out.println(evaluator.eval(s6));	// null; Syntaxfehler
-        System.out.println(evaluator.eval(s7));	// 256.0
-        System.out.println(evaluator.eval(s8));	// 20.0
-        System.out.println(evaluator.eval(s9));	// 21.0
-        System.out.println(evaluator.eval(s10));	// 21.0
+        // System.out.println(evaluator.eval(s1));	// 3.0
+        // System.out.println(evaluator.eval(s2));	// 1029.0
+        // System.out.println(evaluator.eval(s3));	// 1029.0
+        // System.out.println(evaluator.eval(s4));	// 324.0
+        // System.out.println(evaluator.eval(s5));	// null; Syntaxfehler
+        // System.out.println(evaluator.eval(s6));	// null; Syntaxfehler
+        // System.out.println(evaluator.eval(s7));	// 256.0
+        // System.out.println(evaluator.eval(s8));	// 20.0
+        // System.out.println(evaluator.eval(s9));	// 21.0
+        // System.out.println(evaluator.eval(s10));	// 21.0
 
-        //repl();
+        evaluator.repl();
     }
 }
