@@ -12,7 +12,6 @@
 package aufgabe3;
 
 import static aufgabe3.Tokenizer.*;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -188,8 +187,8 @@ public class Evaluator {
             // Ihr Code:
             // ...
             if (line.equals("end")) {
-              System.out.println("bye!");
-              return;
+                System.out.println("bye!");
+                return;
             }
             else if (eval(line)==null) System.out.println("!!! error");
             else {
