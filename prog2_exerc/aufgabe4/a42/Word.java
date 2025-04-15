@@ -2,6 +2,7 @@ package a42;
 
 /**
  * Klasse für Wörter mit ihren Häufigkeiten.
+ * 
  * @author Alexander Engelhardt
  * @author Timothy Drexler
  */

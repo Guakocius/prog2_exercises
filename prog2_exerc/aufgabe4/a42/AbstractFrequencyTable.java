@@ -48,11 +48,7 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T> {
             s.append(w);
             s.append(", ");
         }
-        s.append("} size = " + this.size());
+        s.append("} size = ").append(this.size());
 		return s.toString();
-    }
-
-    public boolean isCard(Object o) {
-        return (o instanceof Card);
     }
 }

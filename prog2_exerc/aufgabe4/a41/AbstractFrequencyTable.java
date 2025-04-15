@@ -51,7 +51,7 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T> {
             s.append(this.get(i).toString());
             s.append(", ");
         }
-        s.append("} size = " + this.size());
+        s.append("} size = ").append(this.size());
 		return s.toString();
 	}
 }

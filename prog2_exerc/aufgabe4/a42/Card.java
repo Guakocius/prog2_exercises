@@ -4,19 +4,20 @@ import java.util.Objects;
 
 /**
  *
- * @author oliverbittel
+ * @author Alexander Engelhardt
+ * @author Timothy Drexler
  */
 public abstract class Card {
     protected Suit suit;
     protected Rank rank;
-    static protected Suit[] suitVal = Suit.values();
-    static protected Rank[] rankVal = Rank.values();
+    protected static Suit[] suitVal = Suit.values();
+    protected static Rank[] rankVal = Rank.values();
 
-    public static enum Suit {
+    public enum Suit {
         DIAMONDS, CLUBS, HEARTS, SPADES
     }
 
-    public static enum Rank {
+    public enum Rank {
         SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE
     }
 
