@@ -30,14 +30,15 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
     }
 
     @Override
-    public void add(T w, int f) {
+    public void add(Word<T> w, int f) {
         if (size >= fqTable.size()) {
             fqTable = new ArrayList<>(fqTable.size() * 2);
+            fqTable.addAll(fqTable);
         }
 
-       Word<T> word = new Word<T>(w, f);
+       Word<T> word = new Word<T>((T) w, f);
         if (size == 0) {
-            fqTable[0] = word;
+            fqTable.get(0).add(word);
             size++;
         } else if (size > 0) {
             int c = 0;

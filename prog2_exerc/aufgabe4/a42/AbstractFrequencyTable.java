@@ -17,6 +17,10 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T> {
 		add(w, 1);
     }
 
+    @Override
+    public void add(Word<T> w) {
+        add(w, 1);
+
 	@Override
 	public void addAll(FrequencyTable<? extends T> fq) {
         if (!fq.isEmpty()) {

@@ -30,7 +30,7 @@ public interface FrequencyTable<T> {
 	 * @param w Wort.
 	 * @param f H&auml;ufigkeit.
 	 */
-	void add(T w, int f);
+	void add(Word<T> w, int f);
 
 	/**
 	 * F&uuml;gt das Wort w mit der H&auml;ufigkeit 1 zu dieser Tabelle dazu.
@@ -39,6 +39,14 @@ public interface FrequencyTable<T> {
 	 * @param w Wort.
 	 */
 	void add(T w);
+
+	/**
+	 * F&uuml;gt das Wort w mit der H&auml;ufigkeit 1 zu dieser Tabelle dazu.
+	 * Falls w bereits in der Tabelle enthalten ist,
+	 * wird die H&auml;ufigkeit um 1 erhöht.
+	 * @param w Wort.
+	 */
+	void add(Word<T> w);
 
 	/**
 	 * F&uuml;gt alle W&ouml;rter mit ihren H&auml;ufigkeiten aus fq zu dieser Tabelle dazu.
