@@ -46,7 +46,7 @@ public interface FrequencyTable<T> {
 	 * fq bleibt unver&auml;ndert.
 	 * @param fq H&auml;ufigkeitstabelle.
 	 */
-	void addAll(FrequencyTable<? super T> fq);
+	void addAll(FrequencyTable<? extends T> fq);
 
 	/**
 	 * Liefert das Wort mit seiner Häufigkeit zur&uuml;ck, das mit seiner H&auml;ufigkeit an Position pos steht.

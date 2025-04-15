@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
     private int size = 0;
-    private Word[] fqTable;
+    private Word<T>[] fqTable;
     private static final int DEFAULT_SIZE = 100;
 
     public ArrayFrequencyTable() {
@@ -32,7 +32,7 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
         if (size >= fqTable.length) {
             fqTable = Arrays.copyOf(fqTable, size * 2);}
 
-       Word word = new Word(w, f);
+       Word<T> word = new Word<>(w, f);
         if (size == 0) {
             fqTable[0] = word;
             size++;
@@ -59,13 +59,13 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
     }
 
     @Override
-    public Word get(int pos) {
+    public Word<T> get(int pos) {
         return fqTable[pos];
     }
 
     @Override
     public int get(T w) {
-        for (Word word : fqTable) {
+        for (Word<T> word : fqTable) {
             if (word == null) {
                 continue;
             } else if (word.getWord().equals(w)) {

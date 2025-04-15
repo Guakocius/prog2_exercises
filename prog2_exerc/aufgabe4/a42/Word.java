@@ -15,11 +15,11 @@ public class Word<T> {
 	 * @param f H&auml;ufigkeit
 	 */
 	public Word(T word, int f) {
-		this.word = word;
+        this.word = word;
 		this.frequency = f;
 	}
 
-	/**
+    	/**
 	 * Liefert Wort zur&uuml;ck.
 	 * @return Wort
 	 */
@@ -45,6 +45,6 @@ public class Word<T> {
 
 	@Override
 	public String toString() {
-		return word + ":" + frequency;
+		return word.toString() + ":" + frequency;
 	}
 }

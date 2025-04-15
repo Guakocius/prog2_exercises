@@ -18,12 +18,10 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T> {
     }
 
 	@Override
-	public void addAll(FrequencyTable<? super T> fq) {
+	public void addAll(FrequencyTable<? extends T> fq) {
         if (!fq.isEmpty()) {
             for (int i = 0; i < fq.size(); i++) {
-                T word = fq.get(i).getWord();
-                int freq = fq.get(word);
-                this.add(word, freq);
+                this.add(fq.get(i).getWord(), fq.get(i).getFrequency());
             }
         }
 	}
@@ -35,9 +33,7 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T> {
             fq.addAll(this);
         } else {
             for (int i = 0; i < n; i++) {
-                T word = this.get(i).getWord();
-                int freq = this.get(word);
-                fq.add(word, freq);
+                fq.add(this.get(i).getWord(), this.get(i).getFrequency());
             }
         }
 	}
@@ -48,10 +44,15 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T> {
 		// Ihr Code:
 
         for (int i = 0; i < this.size(); i++) {
-            s.append(this.get(i).toString());
+            String w = this.get(i).getWord().toString();
+            s.append(w);
             s.append(", ");
         }
         s.append("} size = " + this.size());
 		return s.toString();
-	}
+    }
+
+    public boolean isCard(Object o) {
+        return (o instanceof Card);
+    }
 }
