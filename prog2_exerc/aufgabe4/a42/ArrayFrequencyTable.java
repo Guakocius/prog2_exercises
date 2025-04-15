@@ -1,6 +1,8 @@
 package a42;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -9,7 +11,7 @@ import java.util.Arrays;
  */
 public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
     private int size = 0;
-    private Word[] fqTable;
+    private List<Word<T>> fqTable;
     private static final int DEFAULT_SIZE = 100;
 
     public ArrayFrequencyTable() {
@@ -23,22 +25,23 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
 
     @Override
     public final void clear() {
-        fqTable = new Word[DEFAULT_SIZE];
+        fqTable = new ArrayList<>(DEFAULT_SIZE);
         size = 0;
     }
 
     @Override
     public void add(T w, int f) {
-        if (size >= fqTable.length) {
-            fqTable = Arrays.copyOf(fqTable, size * 2);}
+        if (size >= fqTable.size()) {
+            fqTable = new ArrayList<>(fqTable.size() * 2);
+        }
 
-       Word word = new Word(w, f);
+       Word<T> word = new Word<T>(w, f);
         if (size == 0) {
             fqTable[0] = word;
             size++;
         } else if (size > 0) {
             int c = 0;
-            for (Word wo : fqTable) {
+            for (Word<? extends T> wo : fqTable) {
                 if (c == size) {
                     fqTable[size] = word;
                     sort(size);
@@ -59,13 +62,13 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
     }
 
     @Override
-    public Word get(int pos) {
+    public Word<T> get(int pos) {
         return fqTable[pos];
     }
 
     @Override
     public int get(T w) {
-        for (Word word : fqTable) {
+        for (Word<? extends T> word : fqTable) {
             if (word == null) {
                 continue;
             } else if (word.getWord().equals(w)) {
@@ -78,7 +81,7 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
 
     public void sort(int pos) {
         while (pos != 0 && fqTable[pos].getFrequency() > fqTable[pos - 1].getFrequency()) {
-            Word temp = fqTable[pos];
+            Word<T> temp = fqTable[pos];
             fqTable[pos] = fqTable[pos - 1];
             fqTable[pos - 1] = temp;
             pos--;
