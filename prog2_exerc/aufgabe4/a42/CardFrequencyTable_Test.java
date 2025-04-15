@@ -1,4 +1,4 @@
-package aufgabe4;
+package a42;
 
 import java.util.Random;
 

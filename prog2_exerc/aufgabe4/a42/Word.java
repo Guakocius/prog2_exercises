@@ -1,4 +1,4 @@
-package aufgabe4;
+package a42;
 
 /**
  * Klasse für Wörter mit ihren Häufigkeiten.

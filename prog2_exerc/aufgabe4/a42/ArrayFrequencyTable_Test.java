@@ -1,4 +1,4 @@
-package aufgabe4;
+package a42;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
