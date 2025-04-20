@@ -1,6 +1,7 @@
 package a43;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  *
@@ -83,5 +84,10 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
             fqTable[pos - 1] = temp;
             pos--;
         }
+    }
+
+    @Override
+    public Iterator<Word<T>> iterator() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

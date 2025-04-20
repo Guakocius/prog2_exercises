@@ -1,7 +1,5 @@
 package a42;
 
-import java.util.Iterator;
-
 /**
  *
  * @author Alexander Engelhardt
@@ -9,11 +7,6 @@ import java.util.Iterator;
  */
 public class LinkedListFrequencyTable<T> extends AbstractFrequencyTable<T> {
     private int size = 0;
-
-    @Override
-    public Iterator<Word<T>> iterator() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     private static class Node<T> {
         private Node<T> prev;

@@ -5,7 +5,7 @@ package a43;
  * @author Alexander Engelhardt 
  * @author Timothy Drexler
  */
-public interface FrequencyTable<T> {
+public interface FrequencyTable<T> extends Iterable<Word<T>> {
 	/**
 	 * Liefert die Anzahl an Einträgen (unterschiedlicher W&ouml;rter) in dieser Tabelle zur&uuml;ck.
 	 * @return Anzahl an Einträgen
