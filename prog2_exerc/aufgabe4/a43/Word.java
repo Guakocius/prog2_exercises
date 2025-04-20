@@ -13,7 +13,7 @@ public class Word<T> {
 	/**
 	 * Konstruktor.
 	 * @param word Wort
-	 * @param f H&auml;ufigkeit
+	 * @param f H&auml;ufigkeita
 	 */
 	public Word(T word, int f) {
         this.word = word;
