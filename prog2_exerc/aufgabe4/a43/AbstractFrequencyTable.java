@@ -8,11 +8,10 @@ import java.util.Iterator;
  * @author Timothy Drexler
  */
 
-public abstract class AbstractFrequencyTable<T> implements FrequencyTable<Word>  {
+public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T>  {
 
-    FrequencyTable<Word> fq;
-    
-    Iterator<Word> abstractIterator = this.iterator();
+    FrequencyTable<T> fq;
+
 
 	@Override
 	public boolean isEmpty() {
@@ -20,30 +19,44 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<Word> 
 	}
 
 	@Override
-    public void add(String w) {
-		add(w, 1);
+    public void add(T w) {
+	    add((String) w, 1);
     }
 
+    @Override
+    public void add(String w) {
+        add(w, 1);
+    }
+
+
 	@Override
-	public void addAll(FrequencyTable<Word> fq) {
-        Iterator<Word> iterator = fq.iterator(); 
+	public void addAll(FrequencyTable<? extends T> fq) {
+        Iterator<? extends T> iterator = fq.iterator();
         if (!fq.isEmpty()) {
-            while (iterator.hasNext()) {
-                Word word = iterator.next();
-                this.add(word.getWord(), word.getFrequency());
+            while (iterator.hasNext() ) {
+                if (iterator.next() instanceof Word) {
+                    Word word = (Word) iterator.next();
+
+                    this.add((String) word.getWord(), word.getFrequency());
+                }
+                else {
+                    T w = iterator.next();
+                    this.add(w);
+                }
                 
             }
         }
 	}
 
 	@Override
-	public void collectNMostFrequent(int n, FrequencyTable<? super Word> fq) {
+	public void collectNMostFrequent(int n, FrequencyTable<? super T> fq) {
+        Iterator<T> abstractIterator = this.iterator();
         fq.clear();
         if (this.size() < n) {
-            fq.addAll((FrequencyTable<Word>) this);
+            fq.addAll(this);
         } else {
             for (int i = 0; i < n; i++) {
-                Word word = abstractIterator.next();
+                Word word = (Word) abstractIterator.next();
                 fq.add(word.getWord(), word.getFrequency());
             }
         }
@@ -51,10 +64,11 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<Word> 
 
 	@Override
 	public String toString() {
+        Iterator<T> abstractIterator = this.iterator();
 		StringBuilder s = new StringBuilder("{");
 		
-        while (abstractIterator.hasNext()) {
-            Word word = abstractIterator.next();
+        while (abstractIterator.hasNext() && abstractIterator.next() != null) {
+            Word word = (Word) abstractIterator.next();
             String w = word.getWord();
             s.append(w);
             s.append(", ");
@@ -64,8 +78,8 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<Word> 
     }
 
     @Override
-    public Iterator<Word> iterator() {
-        return new Iterator<Word>() {
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
             private int current = 0;
 
             @Override
@@ -74,10 +88,15 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<Word> 
             }
             
             @Override
-            public Word next() {
-                return get(current++);
+            public T next() {
+                return (T) get(current++);
             }
         };
+    }
+
+    @Override
+    public Word convertToWord(T w) {
+        return (Word) w;
     }
 
     /*public class FqTableIterator implements Iterator<Word> {

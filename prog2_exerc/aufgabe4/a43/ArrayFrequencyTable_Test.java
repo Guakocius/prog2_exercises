@@ -26,6 +26,7 @@ public class ArrayFrequencyTable_Test {
 		tab1.add("ein",2);
 		tab1.add("Test");
 		tab1.add("Test",2);
+		System.out.println(tab1.toString());
 
 		System.out.println("Soll: Test:3");
 		System.out.println("Ist:  " + tab1.get(0) + "\n");
@@ -80,7 +81,6 @@ public class ArrayFrequencyTable_Test {
 				if (w.length() == 0 || w.length() == 1)
 					continue;
 				//System.out.println(w);
-				// Ihr Code:
 				tab.add(w);
 			}
 		}

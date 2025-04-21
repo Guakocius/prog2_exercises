@@ -32,7 +32,9 @@ public interface FrequencyTable<T> extends Iterable<T> {
 	 * @param w Wort.
 	 * @param f H&auml;ufigkeit.
 	 */
+	void add(T w, int f);
 	void add(String w, int f);
+	Word convertToWord(T w);
 	
 	/**
 	 * F&uuml;gt das Wort w mit der H&auml;ufigkeit 1 zu dieser Tabelle dazu. 
@@ -40,6 +42,7 @@ public interface FrequencyTable<T> extends Iterable<T> {
 	 * wird die H&auml;ufigkeit um 1 erhöht. 
 	 * @param w Wort.
 	 */
+	void add(T w);
 	void add(String w);
 	
 	/**
@@ -48,7 +51,7 @@ public interface FrequencyTable<T> extends Iterable<T> {
 	 * fq bleibt unver&auml;ndert.
 	 * @param fq H&auml;ufigkeitstabelle.
 	 */
-	void addAll(FrequencyTable<Word> fq);
+	void addAll(FrequencyTable<? extends T> fq);
 
 	/**
 	 * Liefert das Wort mit seiner Häufigkeit zur&uuml;ck, das mit seiner H&auml;ufigkeit an Position pos steht.
@@ -67,6 +70,7 @@ public interface FrequencyTable<T> extends Iterable<T> {
 	 * @param w Wort
 	 * @return H&auml;ufigkeit. 
 	 */
+	int get(T w);
 	int get(String w);
 	
 	/**
@@ -78,7 +82,7 @@ public interface FrequencyTable<T> extends Iterable<T> {
 	 * tab2 = {"ein":3, "das":3, "ist":2}.
 	 * @param fq H&auml;ufigkeitstabelle.
 	 */
-	void collectNMostFrequent(int n, FrequencyTable<? super Word> fq);
+	void collectNMostFrequent(int n, FrequencyTable<? super T> fq);
 
 
 	@Override
