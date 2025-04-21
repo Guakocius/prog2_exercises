@@ -6,8 +6,8 @@ package a43;
  * @author Alexander Engelhardt
  * @author Timothy Drexler
  */
-public class Word<T> {
-	private final T word;
+public class Word {
+	private final String word;
 	private int frequency;
 
 	/**
@@ -15,7 +15,7 @@ public class Word<T> {
 	 * @param word Wort
 	 * @param f H&auml;ufigkeita
 	 */
-	public Word(T word, int f) {
+	public Word(String word, int f) {
         this.word = word;
 		this.frequency = f;
 	}
@@ -24,7 +24,7 @@ public class Word<T> {
 	 * Liefert Wort zur&uuml;ck.
 	 * @return Wort
 	 */
-	public T getWord() {
+	public String getWord() {
 		return word;
 	}
 
@@ -42,10 +42,5 @@ public class Word<T> {
 	 */
 	public void addFrequency(int f) {
 		frequency += f;
-	}
-
-	@Override
-	public String toString() {
-		return word.toString() + ":" + frequency;
 	}
 }

@@ -10,7 +10,7 @@ import java.util.Iterator;
  */
 public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
     private int size = 0;
-    private Word<T>[] fqTable;
+    private Word[] fqTable;
     private static final int DEFAULT_SIZE = 100;
 
     public ArrayFrequencyTable() {
@@ -29,15 +29,20 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
     }
 
     @Override
-    public void add(T w, int f) {
+    public void add(String w, int f) {
         if (size >= fqTable.length) {
-            fqTable = Arrays.copyOf(fqTable, size * 2);}
+            fqTable = Arrays.copyOf(fqTable, size * 2);
+        }
 
-       Word<T> word = new Word<>(w, f);
+       Word word = new Word(w, f);
+
         if (size == 0) {
             fqTable[0] = word;
             size++;
+            return;
+
         } else if (size > 0) {
+            /*
             int c = 0;
             for (Word wo : fqTable) {
                 if (c == size) {
@@ -56,17 +61,47 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
                 }
                 c++;
             }
+        }*/
+        Iterator<Word> iterator = Arrays.asList(fqTable).subList(0, size).iterator();
+        int c = 0;
+        while (iterator.hasNext()) {
+            Word wo = iterator.next();
+            if (wo.getWord().equals(w)) {
+                fqTable[c].addFrequency(f);
+                if (c > 0) {
+                    sort(c);
+                }
+                return;
+            }
+            c++;
         }
     }
+}
 
     @Override
-    public Word<T> get(int pos) {
+    public Word get(int pos) {
         return fqTable[pos];
     }
 
+    /*@Override
+    public int get(Word w) {
+        Iterator<Word> iterator = Arrays.asList(fqTable).subList(0, size).iterator();
+        Word word = iterator.next();
+        while (iterator.hasNext()) {
+            if (word == null) {
+                continue;
+            } else if (word.getWord().equals(w.getWord())) {
+                return word.getFrequency();
+            }
+        }
+        return 0;
+    }*/
+
     @Override
-    public int get(T w) {
-        for (Word<T> word : fqTable) {
+    public int get(String w) {
+        Iterator<Word> iterator = Arrays.asList(fqTable).subList(0, size).iterator();
+        Word word = iterator.next();
+        while (iterator.hasNext()) {
             if (word == null) {
                 continue;
             } else if (word.getWord().equals(w)) {
@@ -86,8 +121,5 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
         }
     }
 
-    @Override
-    public Iterator<Word<T>> iterator() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    
 }

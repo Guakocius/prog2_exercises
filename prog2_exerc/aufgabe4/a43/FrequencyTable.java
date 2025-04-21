@@ -1,11 +1,13 @@
 package a43;
 
+import java.util.Iterator;
+
 /**
  *
  * @author Alexander Engelhardt 
  * @author Timothy Drexler
  */
-public interface FrequencyTable<T> extends Iterable<Word<T>> {
+public interface FrequencyTable<T> extends Iterable<T> {
 	/**
 	 * Liefert die Anzahl an Einträgen (unterschiedlicher W&ouml;rter) in dieser Tabelle zur&uuml;ck.
 	 * @return Anzahl an Einträgen
@@ -30,7 +32,7 @@ public interface FrequencyTable<T> extends Iterable<Word<T>> {
 	 * @param w Wort.
 	 * @param f H&auml;ufigkeit.
 	 */
-	void add(T w, int f);
+	void add(String w, int f);
 	
 	/**
 	 * F&uuml;gt das Wort w mit der H&auml;ufigkeit 1 zu dieser Tabelle dazu. 
@@ -38,7 +40,7 @@ public interface FrequencyTable<T> extends Iterable<Word<T>> {
 	 * wird die H&auml;ufigkeit um 1 erhöht. 
 	 * @param w Wort.
 	 */
-	void add(T w);
+	void add(String w);
 	
 	/**
 	 * F&uuml;gt alle W&ouml;rter mit ihren H&auml;ufigkeiten aus fq zu dieser Tabelle dazu.
@@ -46,7 +48,7 @@ public interface FrequencyTable<T> extends Iterable<Word<T>> {
 	 * fq bleibt unver&auml;ndert.
 	 * @param fq H&auml;ufigkeitstabelle.
 	 */
-	void addAll(FrequencyTable<? extends T> fq);
+	void addAll(FrequencyTable<Word> fq);
 
 	/**
 	 * Liefert das Wort mit seiner Häufigkeit zur&uuml;ck, das mit seiner H&auml;ufigkeit an Position pos steht.
@@ -56,7 +58,8 @@ public interface FrequencyTable<T> extends Iterable<Word<T>> {
 	 * @return Wort mit H&auml;ufigkeit oder null, 
 	 * falls die Tabelle weniger als pos +1 Einträge enth&auml;lt.
 	 */
-	Word<T> get(int pos);
+	Word get(int pos);
+
 
 	/**
 	 * Liefert die H&auml;ufigkeit des Worts w zur&uuml;ck.
@@ -64,7 +67,7 @@ public interface FrequencyTable<T> extends Iterable<Word<T>> {
 	 * @param w Wort
 	 * @return H&auml;ufigkeit. 
 	 */
-	int get(T w);
+	int get(String w);
 	
 	/**
 	 * Speichert die n h&auml;ufigsten W&ouml;rter in fq.
@@ -75,5 +78,12 @@ public interface FrequencyTable<T> extends Iterable<Word<T>> {
 	 * tab2 = {"ein":3, "das":3, "ist":2}.
 	 * @param fq H&auml;ufigkeitstabelle.
 	 */
-	void collectNMostFrequent(int n, FrequencyTable<? super T> fq);
+	void collectNMostFrequent(int n, FrequencyTable<? super Word> fq);
+
+
+	@Override
+	Iterator<T> iterator();
+
 }
+
+

@@ -20,7 +20,7 @@ public class ArrayFrequencyTable_Test {
 
 	private static void test1() {
 		// Test von add:
-    FrequencyTable<String> tab1 = new ArrayFrequencyTable<>();
+    FrequencyTable<Word> tab1 = new ArrayFrequencyTable<>();
 		tab1.add("das");
 		tab1.add("ist");
 		tab1.add("ein",2);
@@ -49,7 +49,7 @@ public class ArrayFrequencyTable_Test {
 		System.out.println("Ist:  " + tab1.toString() +  "\n");
 
 		// Test von addAll:
-		FrequencyTable<String> tab2 = new ArrayFrequencyTable<>();
+		FrequencyTable<Word> tab2 = new ArrayFrequencyTable<>();
 		tab2.add("das",2);
 		tab2.add("ist",4);
 		tab2.add("kurzer");
@@ -66,7 +66,7 @@ public class ArrayFrequencyTable_Test {
 	}
 
 	private static void test2() throws FileNotFoundException, IOException {
-		FrequencyTable<String> tab = new ArrayFrequencyTable<>();
+		FrequencyTable<Word> tab = new ArrayFrequencyTable<>();
 
 		long start = System.nanoTime(); // aktuelle Zeit in nsec
 		LineNumberReader in;
@@ -91,7 +91,7 @@ public class ArrayFrequencyTable_Test {
 		// Ausgabe der 100 häufigsten Wörter:
 		System.out.println("100 häufigste Wörter:");
 		// Ihr Code
-        FrequencyTable<String> tab3 = new ArrayFrequencyTable<>();
+        FrequencyTable<Word> tab3 = new ArrayFrequencyTable<>();
         tab.collectNMostFrequent(100, tab3);
 		System.out.println("tab3: " + tab3.toString());
 
