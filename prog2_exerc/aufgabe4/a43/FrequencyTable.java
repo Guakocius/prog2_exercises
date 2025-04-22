@@ -1,13 +1,11 @@
 package a43;
 
-import java.util.Iterator;
-
 /**
  *
  * @author Alexander Engelhardt 
  * @author Timothy Drexler
  */
-public interface FrequencyTable<T> extends Iterable<T> {
+public interface FrequencyTable<T> extends Iterable<Word<T>> {
 	/**
 	 * Liefert die Anzahl an Einträgen (unterschiedlicher W&ouml;rter) in dieser Tabelle zur&uuml;ck.
 	 * @return Anzahl an Einträgen
@@ -33,8 +31,6 @@ public interface FrequencyTable<T> extends Iterable<T> {
 	 * @param f H&auml;ufigkeit.
 	 */
 	void add(T w, int f);
-	void add(String w, int f);
-	Word convertToWord(T w);
 	
 	/**
 	 * F&uuml;gt das Wort w mit der H&auml;ufigkeit 1 zu dieser Tabelle dazu. 
@@ -43,7 +39,6 @@ public interface FrequencyTable<T> extends Iterable<T> {
 	 * @param w Wort.
 	 */
 	void add(T w);
-	void add(String w);
 	
 	/**
 	 * F&uuml;gt alle W&ouml;rter mit ihren H&auml;ufigkeiten aus fq zu dieser Tabelle dazu.
@@ -61,8 +56,7 @@ public interface FrequencyTable<T> extends Iterable<T> {
 	 * @return Wort mit H&auml;ufigkeit oder null, 
 	 * falls die Tabelle weniger als pos +1 Einträge enth&auml;lt.
 	 */
-	Word get(int pos);
-
+	Word<T> get(int pos);
 
 	/**
 	 * Liefert die H&auml;ufigkeit des Worts w zur&uuml;ck.
@@ -71,7 +65,6 @@ public interface FrequencyTable<T> extends Iterable<T> {
 	 * @return H&auml;ufigkeit. 
 	 */
 	int get(T w);
-	int get(String w);
 	
 	/**
 	 * Speichert die n h&auml;ufigsten W&ouml;rter in fq.
@@ -83,11 +76,4 @@ public interface FrequencyTable<T> extends Iterable<T> {
 	 * @param fq H&auml;ufigkeitstabelle.
 	 */
 	void collectNMostFrequent(int n, FrequencyTable<? super T> fq);
-
-
-	@Override
-	Iterator<T> iterator();
-
 }
-
-
