@@ -23,7 +23,7 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T> {
             // for (int i = 0; i < fq.size(); i++) {
             //     this.add(fq.get(i).getWord(), fq.get(i).getFrequency());
             // }
-            for (Word<? extends T> wo : fq) {
+            for (var wo : fq) {
                 this.add(wo.getWord(), wo.getFrequency());
             }
         }

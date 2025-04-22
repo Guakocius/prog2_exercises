@@ -116,7 +116,7 @@ public class LinkedListFrequencyTable<T> extends AbstractFrequencyTable<T> {
 
             @Override
             public boolean hasNext() {
-                return current.next != end;
+                return current != end;
             }
 
             @Override
