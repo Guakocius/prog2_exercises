@@ -1,7 +1,5 @@
 package aufgabe5;
 
-import java.lang.Math;
-
 public class PythagorasTree_V1 {
 
     private static final double DELTA = 30;
@@ -24,27 +22,24 @@ public class PythagorasTree_V1 {
         } else {
             StdDraw.setPenColor(StdDraw.BROWN);
         }
+        // A
         Point A = new Point(x, y);
-        // StdDraw.text(x, y, "A");
-        //B
-        Point B = new Point(x + c, y + s);
-        StdDraw.line(x, y, B.getX(), B.getY());
-        // StdDraw.text(B.getX(), B.getY(), "B");
-        //D
-        Point D = new Point(x - s, y + c);
-        // StdDraw.text(D.getX(), D.getY(), "D");
-        StdDraw.line(x, y, D.getX(), D.getY());
+        // B
+        Point B = new Point(A.getX() + c, A.getY() + s);
+        StdDraw.line(A.getX(), A.getY(), B.getX(), B.getY());
+        // D
+        Point D = new Point(A.getX() - s, A.getY() + c);
+        StdDraw.line(A.getX(), A.getY(), D.getX(), D.getY());
         //C
-        Point C = new Point(x + c - s, y + s + c);
-        // StdDraw.text(C.getX(), C.getY(), "C");
+        Point C = new Point(A.getX() + c - s, A.getY() + s + c);
         StdDraw.line(D.getX(), D.getY(), C.getX(), C.getY());
         StdDraw.line(B.getX(), B.getY(), C.getX(), C.getY());
 
         if (l >= BORDER) {
             // DCE
-            Point E = new Point(x - s + u * Math.cos(RAD_DELTA + angle), y + c + u * Math.sin(RAD_DELTA + angle));
-            drawPyTree(RAD_DELTA + angle, D.getX(), D.getY(), u, newPenWidth*1.12*(u/l));
-            drawPyTree(Math.toRadians(-90)+RAD_DELTA+angle, E.getX(), E.getY(), v, newPenWidth*1.12*(u/l));
+            Point E = new Point(A.getX() - s + u * Math.cos(RAD_DELTA + angle), A.getY() + c + u * Math.sin(RAD_DELTA + angle));
+            drawPyTree(RAD_DELTA + angle, D.getX(), D.getY(), u, newPenWidth * 1.12 * (u / l));
+            drawPyTree(Math.toRadians(-90) + RAD_DELTA + angle, E.getX(), E.getY(), v, newPenWidth * 1.12 * (u / l));
         }
     }
 
@@ -56,7 +51,5 @@ public class PythagorasTree_V1 {
         StdDraw.setXscale(0, 10);
         StdDraw.setYscale(0, 10);
         drawPyTree(RAD_GAMMA, 6, 1, 1.5, 0.004);
-        // StdDraw.setPenColor(StdDraw.RED);
-        // drawPyTree(0, 0.6, 0.6, 0.3);
     }
 }

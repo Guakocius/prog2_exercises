@@ -1,12 +1,8 @@
 package aufgabe5;
 
-import java.lang.Math;
-
 public class PythagorasTree_V2 {
 
-    private static final double DELTA = 30;
     private static final double GAMMA = 0;
-    private static final double RAD_DELTA = Math.toRadians(DELTA);
     private static final double RAD_GAMMA = Math.toRadians(GAMMA);
     private static final double BORDER = 0.04;
     /*
@@ -30,27 +26,24 @@ public class PythagorasTree_V2 {
         } else {
             StdDraw.setPenColor(StdDraw.BROWN);
         }
+        // A
         Point A = new Point(x, y);
-        // StdDraw.text(x, y, "A");
-        //B
-        Point B = new Point(x + c, y + s);
-        StdDraw.line(x, y, B.getX(), B.getY());
-        // StdDraw.text(B.getX(), B.getY(), "B");
-        //D
-        Point D = new Point(x - s2, y + c2);
-        // StdDraw.text(D.getX(), D.getY(), "D");
-        StdDraw.line(x, y, D.getX(), D.getY());
-        //C
-        Point C = new Point (x + c - s2, y + s + c2);
-        // StdDraw.text(C.getX(), C.getY(), "C");
+        // B
+        Point B = new Point(A.getX() + c, A.getY() + s);
+        StdDraw.line(A.getX(), A.getY(), B.getX(), B.getY());
+        // D
+        Point D = new Point(A.getX() - s2, A.getY() + c2);
+        StdDraw.line(A.getX(), A.getY(), D.getX(), D.getY());
+        // C
+        Point C = new Point (A.getX() + c - s2, A.getY() + s + c2);
         StdDraw.line(D.getX(), D.getY(), C.getX(), C.getY());
         StdDraw.line(B.getX(), B.getY(), C.getX(), C.getY());
 
         if (l >= BORDER) {
             // DCE
-            Point E = new Point(x - s2 + u * Math.cos(randomAngle + angle), y + c2 + u * Math.sin(randomAngle + angle));
-            drawPyTree(randomAngle + angle, D.getX(), D.getY(), u, newPenWidth*1.13*(u/l));
-            drawPyTree(Math.toRadians(-90)+randomAngle+angle, E.getX(), E.getY(), v, newPenWidth*1.13*(v/l));
+            Point E = new Point(A.getX() - s2 + u * Math.cos(randomAngle + angle), A.getY() + c2 + u * Math.sin(randomAngle + angle));
+            drawPyTree(randomAngle + angle, D.getX(), D.getY(), u, newPenWidth*1.13 * (u / l));
+            drawPyTree(Math.toRadians(-90) + randomAngle + angle, E.getX(), E.getY(), v, newPenWidth * 1.13 * (v / l));
         }
     }
 
@@ -62,7 +55,5 @@ public class PythagorasTree_V2 {
         StdDraw.setXscale(0, 10);
         StdDraw.setYscale(0, 10);
         drawPyTree(RAD_GAMMA, 4, 0.5, 1.0, 0.004);
-        // StdDraw.setPenColor(StdDraw.RED);
-        // drawPyTree(0, 0.6, 0.6, 0.3);
     }
 }
