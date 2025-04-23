@@ -73,6 +73,8 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
      */
     public static final Color BOOK_RED = new Color(150, 35, 31);
 
+    public static final Color BROWN = new Color(180, 103, 77);
+
     // default colors
     private static final Color DEFAULT_PEN_COLOR   = BLACK;
     private static final Color DEFAULT_CLEAR_COLOR = WHITE;
