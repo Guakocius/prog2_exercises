@@ -6,7 +6,7 @@ public class PythagorasTree_V1 {
     private static final double GAMMA = 0;
     private static final double RAD_DELTA = Math.toRadians(DELTA);
     private static final double RAD_GAMMA = Math.toRadians(GAMMA);
-    private static final double BORDER = 0.04;
+    private static final double BORDER = 0.14;
     /*
      * Draws a Pythagorean tree based on the given angle.
      */
@@ -17,7 +17,7 @@ public class PythagorasTree_V1 {
         double c = w * Math.cos(angle);
         double u = w * Math.cos(RAD_DELTA);
         double v = w * Math.sin(RAD_DELTA);
-        if (l < BORDER) {
+        if (l < 3 * BORDER) {
             StdDraw.setPenColor(StdDraw.GREEN);
         } else {
             StdDraw.setPenColor(StdDraw.BROWN);
@@ -26,18 +26,24 @@ public class PythagorasTree_V1 {
         Point A = new Point(x, y);
         // B
         Point B = new Point(A.getX() + c, A.getY() + s);
-        StdDraw.line(A.getX(), A.getY(), B.getX(), B.getY());
+        // StdDraw.line(A.getX(), A.getY(), B.getX(), B.getY());
         // D
         Point D = new Point(A.getX() - s, A.getY() + c);
         StdDraw.line(A.getX(), A.getY(), D.getX(), D.getY());
         //C
         Point C = new Point(A.getX() + c - s, A.getY() + s + c);
-        StdDraw.line(D.getX(), D.getY(), C.getX(), C.getY());
+        // StdDraw.line(D.getX(), D.getY(), C.getX(), C.getY());
         StdDraw.line(B.getX(), B.getY(), C.getX(), C.getY());
-
-        if (l >= BORDER) {
+        if (l < BORDER) {
+                StdDraw.line(A.getX(), A.getY(), B.getX(), B.getY());
+                StdDraw.line(D.getX(), D.getY(), C.getX(), C.getY());
+        } else {
             // DCE
             Point E = new Point(A.getX() - s + u * Math.cos(RAD_DELTA + angle), A.getY() + c + u * Math.sin(RAD_DELTA + angle));
+            
+            if (v < BORDER) {
+                StdDraw.line(C.getX(), C.getY(), E.getX(), E.getY());
+            }
             drawPyTree(RAD_DELTA + angle, D.getX(), D.getY(), u, newPenWidth * 1.12 * (u / l));
             drawPyTree(Math.toRadians(-90) + RAD_DELTA + angle, E.getX(), E.getY(), v, newPenWidth * 1.12 * (u / l));
         }
