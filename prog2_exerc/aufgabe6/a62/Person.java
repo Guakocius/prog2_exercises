@@ -26,14 +26,14 @@ public class Person {
             return false;
         else if (this == b.getEntleiher()) // von dieser Person entliehen
             return true;
-        else    // nicht entliehen
+        else   // nicht entliehen
             ausgelieheneBuecher.add(b);
-            return b.wirdAusgeliehen(this);
+        return b.wirdAusgeliehen(this);
     }
 
     public boolean gibtZurueck(Buch b) {
         for (Buch buch : ausgelieheneBuecher) {
-            if (buch == b) {
+            if (buch.equals(b)) {
                 ausgelieheneBuecher.remove(b);
                 return b.wirdZurueckGegeben();
             }
@@ -43,16 +43,17 @@ public class Person {
 
     public void print() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getName());
-        sb.append(" hat ausgeliehen:");
+        sb.append(getName()).append(" hat ausgeliehen:");
+
         for (int i = 0; i < ausgelieheneBuecher.size(); i++) {
-            if ((i + 1) != (ausgelieheneBuecher.size() - 1)) {
-                sb.append(" ").append(ausgelieheneBuecher.get(i));
-                sb.append(",");
+            if (i != (getAnzahlAusgeliehenerBuecher())) {
+                sb.append(" ").append(ausgelieheneBuecher.get(i).getName()).append(",");
+                //sb.append(",");
             }
-            else
-                sb.append(" ").append(ausgelieheneBuecher.get(i));
+            else 
+                sb.append(" ").append(ausgelieheneBuecher.get(i).getName());
         }
         System.out.println(sb);
+        System.out.println(ausgelieheneBuecher.toString());
     }
 }

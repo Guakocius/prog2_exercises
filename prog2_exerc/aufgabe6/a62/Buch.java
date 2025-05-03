@@ -19,13 +19,13 @@ public class Buch {
     }
 
     public boolean wirdAusgeliehen(Person p) {
-        if (getEntleiher() != p && getEntleiher() != null) // buch von jmd anderem entliehen
+        if (this.getEntleiher() != null && this.getEntleiher() != p) // buch von jmd anderem entliehen
             return false;
-        else if (getEntleiher() == p) // entleiher ist die Person p
+        else if (this.getEntleiher() == p) // entleiher ist die Person p
             return true;
         else // entleiher == null
             this.entleiher = p;
-            return p.leihtAus(this);
+        return p.leihtAus(this);
     }
 
     public boolean wirdZurueckGegeben() {
@@ -40,7 +40,7 @@ public class Buch {
         StringBuilder sb = new StringBuilder();
         sb.append(getName()).append(": ");
         if (getEntleiher() != null)
-            sb.append("ausgeliehen von ").append(getEntleiher());
+            sb.append("ausgeliehen von ").append(getEntleiher().getName());
         else
             sb.append("nicht ausgeliehen");
         System.out.println(sb);
