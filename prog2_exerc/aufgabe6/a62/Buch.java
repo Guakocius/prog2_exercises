@@ -19,13 +19,14 @@ public class Buch {
     }
 
     public boolean wirdAusgeliehen(Person p) {
-        if (this.getEntleiher() != null && this.getEntleiher() != p) // buch von jmd anderem entliehen
-            return false;
-        else if (this.getEntleiher() == p) // entleiher ist die Person p
-            return true;
-        else // entleiher == null
+        if (getEntleiher() == null) { // entleiher == null
             this.entleiher = p;
-        return p.leihtAus(this);
+            return getEntleiher().leihtAus(this);
+        }
+        else if (this.getEntleiher() != null && this.getEntleiher() != p) // buch von jmd anderem entliehen
+            return false;
+        else    // entleiher == p
+            return true;
     }
 
     public boolean wirdZurueckGegeben() {

@@ -24,10 +24,10 @@ public class Person {
     public boolean leihtAus(Buch b) {
         if (b.getEntleiher() != null && this != b.getEntleiher()) // buch schon von jmd anderem entliehen
             return false;
-        else if (this == b.getEntleiher()) // von dieser Person entliehen
-            return true;
-        else   // nicht entliehen
-            ausgelieheneBuecher.add(b);
+        else   // von dieser Person entliehen => wird zu ausgeliehenen Buechern hinzugefuegt
+            if (b.getEntleiher() == this) {
+                ausgelieheneBuecher.add(b);
+            }
         return b.wirdAusgeliehen(this);
     }
 
@@ -46,14 +46,11 @@ public class Person {
         sb.append(getName()).append(" hat ausgeliehen:");
 
         for (int i = 0; i < ausgelieheneBuecher.size(); i++) {
-            if (i != (getAnzahlAusgeliehenerBuecher())) {
+            if (i != (getAnzahlAusgeliehenerBuecher() - 1))
                 sb.append(" ").append(ausgelieheneBuecher.get(i).getName()).append(",");
-                //sb.append(",");
-            }
             else 
                 sb.append(" ").append(ausgelieheneBuecher.get(i).getName());
         }
         System.out.println(sb);
-        System.out.println(ausgelieheneBuecher.toString());
     }
 }
