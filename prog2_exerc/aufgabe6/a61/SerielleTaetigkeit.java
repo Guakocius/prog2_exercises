@@ -5,10 +5,6 @@ package a61;
  */
 public class SerielleTaetigkeit extends ZusammengesetzteTaetigkeit {
 
-    public SerielleTaetigkeit() {
-        super();
-    }
-
     @Override
     public double getTime() {
         double sumTime = 0.0;

@@ -8,11 +8,7 @@ import java.util.ArrayList;
  * ZusammengesetzteTaetigkeit
  */
 public abstract class ZusammengesetzteTaetigkeit implements Taetigkeit {
-    protected List<Taetigkeit> meineTaetigkeiten;
-
-    public ZusammengesetzteTaetigkeit() {
-        meineTaetigkeiten = new ArrayList<>();
-    }
+    protected List<Taetigkeit> meineTaetigkeiten = new ArrayList<>();
 
     @Override
     public double getTime() {

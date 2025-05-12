@@ -5,10 +5,6 @@ package a61;
  */
 public class ParalleleTaetigkeit extends ZusammengesetzteTaetigkeit {
 
-    public ParalleleTaetigkeit() {
-        super();
-    }
-
     @Override
     public double getTime() {
         double maxTime = 0.0;
