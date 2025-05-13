@@ -23,10 +23,7 @@ public class Buch {
             this.entleiher = p;
             return getEntleiher().leihtAus(this);
         }
-        else if (this.getEntleiher() != null && this.getEntleiher() != p) // Buch von jmd anderem entliehen
-            return false;
-        else    // entleiher == p
-            return true;
+        return (this.getEntleiher() == null || this.getEntleiher() == p);
     }
 
     public boolean wirdZurueckGegeben() {
