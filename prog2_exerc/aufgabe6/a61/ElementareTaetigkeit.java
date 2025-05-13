@@ -7,7 +7,6 @@ import java.util.List;
  */
 public class ElementareTaetigkeit implements Taetigkeit {
 
-    // private Taetigkeit ElTaetigkeit;
     private double time;
     private String beschr;
 
@@ -21,12 +20,12 @@ public class ElementareTaetigkeit implements Taetigkeit {
 
     @Override
     public void add(Taetigkeit tk) {
-        // ihr Code
+        throw new UnsupportedOperationException("Not supported..");
     }
 
     @Override
     public void remove(Taetigkeit tk) {
-        // ihr Code
+        throw new UnsupportedOperationException("Not supported..");
     }
 
     @Override

@@ -22,7 +22,7 @@ public class Person {
     }
 
     public boolean leihtAus(Buch b) {
-        if (b.getEntleiher() != null && this != b.getEntleiher()) // buch schon von jmd anderem entliehen
+        if (b.getEntleiher() != null && this != b.getEntleiher()) // Buch schon von jmd anderem entliehen
             return false;
         else   // von dieser Person entliehen => wird zu ausgeliehenen Buechern hinzugefuegt
             if (b.getEntleiher() == this) {
@@ -48,7 +48,7 @@ public class Person {
         for (int i = 0; i < ausgelieheneBuecher.size(); i++) {
             if (i != (getAnzahlAusgeliehenerBuecher() - 1))
                 sb.append(" ").append(ausgelieheneBuecher.get(i).getName()).append(",");
-            else 
+            else
                 sb.append(" ").append(ausgelieheneBuecher.get(i).getName());
         }
         System.out.println(sb);

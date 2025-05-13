@@ -11,11 +11,6 @@ public abstract class ZusammengesetzteTaetigkeit implements Taetigkeit {
     protected List<Taetigkeit> meineTaetigkeiten = new ArrayList<>();
 
     @Override
-    public double getTime() {
-        return meineTaetigkeiten.get(meineTaetigkeiten.size() - 1).getTime();
-    }
-
-    @Override
     public void add(Taetigkeit tk) {
         meineTaetigkeiten.add(tk);
     }

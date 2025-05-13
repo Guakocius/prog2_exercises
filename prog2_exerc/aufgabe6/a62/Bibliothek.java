@@ -8,12 +8,12 @@ public class Bibliothek {
 		Buch b3 = new Buch("Mord im Orientexpress");
 		Person p1 = new Person("Peter");
 		Person p2 = new Person("Maria");
-		
+
 		System.out.println(p1.leihtAus(b1));			// true
 		System.out.println(b2.wirdAusgeliehen(p1));		// true
-		
+
 		p1.print(); // Peter hat ausgeliehen: Tod auf dem Nil, Alibi
-		
+
 		System.out.println(p2.leihtAus(b1));			// false
 		System.out.println(p1.gibtZurueck(b1));			// true
 		System.out.println(p2.leihtAus(b1));			// true
@@ -36,5 +36,4 @@ public class Bibliothek {
 		b2.print(); // Alibi: nicht ausgeliehen
 		b3.print(); // Mord im Orientexpress: nicht ausgeliehen
 	}
-	
 }
