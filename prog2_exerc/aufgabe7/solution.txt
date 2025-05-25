@@ -1,0 +1,14 @@
+- Laufzeiten für n = 10_000_000 (1) und n = 100_000_000 (2):
+    (1):
+    - Iterative: ca. 89759 microsec;
+    - Recursive Divide and Conquer: ca. 1699278 microsec
+    (2):
+    - Iterative: ca. 687608 microsec;
+    - Recursive Divide and Conquer: ca. 16955860 microsec 
+- Laufzeitkomplexität:
+    - Iterative: O(n);
+    - Rec. DnC: O(log n)
+- Bestätigung: Siehe Laufzeiten oben, keine Bestätigung.
+
+T(n(Iterative)) = (687608/100_000_000)*1_000_000_000 = 6876080 microsec
+T(n(DnC)) = (16955860/log(100_000_000)) * log(1_000_000_000) = 19075342.5 microsec
