@@ -3,6 +3,8 @@ package aufgabe8;
 /**
  *
  * @author Oliver Haase
+ * @author Alexander Engelhardt
+ * @author Timothy Drexler
  */
 
 
