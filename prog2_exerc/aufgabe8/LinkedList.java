@@ -48,10 +48,73 @@ public class LinkedList {
         return builder.toString();
     }
 
+    private Node reverseList(Node head) {
+        Node curr = head;
+        Node prev = null;
+        Node next = null;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
 
     public LinkedList mergeSort() {
         // hier fehlt Ihr Code
+        int len = this.size;
+        if (len <= 1) {
+            return this;
+        }
+        Node sortedHead = mergeSort(head);
+        LinkedList sortedList = new LinkedList();
+        Node current = sortedHead;
+        while (current != null) {
+            sortedList.add(current.value);
+            current = current.next;
+        }
+        this.head = sortedList.head;
+        this.size = sortedList.size;
+        this.head = reverseList(this.head);
+        
         return this;
     }
 
+    private Node mergeSort(Node n) {
+        if (n == null || n.next == null) {
+            return n;
+        }
+        Node m = getMiddle(n);
+        Node mNext = m.next;
+        m.next = null;
+
+        Node l = mergeSort(n);
+        Node r = mergeSort(mNext);
+
+        return merge(l, r);
+    }
+
+    private Node merge(Node l, Node r) {
+        if (l == null) return r;
+        if (r == null) return l;
+
+        if (l.value <= r.value) {
+            l.next = merge(l.next, r);
+            return l;
+        } else {
+            r.next = merge(l, r.next);
+            return r;
+        }
+    }
+    private Node getMiddle(Node n) {
+        if (n == null) return n;
+        Node slow = n;
+        Node fast = n.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
 }
