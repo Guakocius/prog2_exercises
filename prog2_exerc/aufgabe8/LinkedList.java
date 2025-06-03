@@ -64,7 +64,6 @@ public class LinkedList {
     }
 
     public LinkedList mergeSort() {
-        // hier fehlt Ihr Code
         int len = this.size;
         if (len <= 1) {
             return this;
