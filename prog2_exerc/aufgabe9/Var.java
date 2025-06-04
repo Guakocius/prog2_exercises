@@ -10,7 +10,11 @@ public class Var implements Expression {
 
     @Override
     public double eval(Map<String, Double> varBel) {
-        return 1.0;
+        if (varBel.containsKey(this.name)) {
+            Double val = varBel.get(name);
+            return (val != null)? val : 0.0;
+        }
+        return 0.0;
     }
     @Override
     public String toString() {

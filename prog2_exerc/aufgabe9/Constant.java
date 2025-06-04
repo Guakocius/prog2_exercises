@@ -9,7 +9,7 @@ public final class Constant implements Expression {
     }
     @Override
     public double eval(Map<String, Double> varBel) {
-        return 1.0;
+        return this.val;
     }
     @Override
     public String toString() {

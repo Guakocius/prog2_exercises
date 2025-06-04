@@ -7,6 +7,8 @@ import java.util.TreeMap;
  * Testprogramm für Aufgabe 9 (Bäume für arithmetische Ausdrücke).
  *
  * @author oliverbittel
+ * @author Alexander Engelhardt
+ * @author Timothy Drexler
  * @since 11.12.2019
  *
  * @author Oliver Haase
@@ -74,7 +76,6 @@ public class ExpressionTest {
         System.out.println(e2.eval(varBel));  // 55.0
         System.out.println(e3.eval(varBel));  // 4.0
         System.out.println(e4.eval(varBel));  // 12.0
-
         // Alle Variablen in e1:
 //        System.out.println(e1.getVars());	// [a, b]
 //        System.out.println(e2.getVars());	// [n]
