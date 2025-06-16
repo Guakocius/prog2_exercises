@@ -1,15 +1,13 @@
 package aufgabe10;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class Settings
-        extends JPanel
-        implements ActionListener {
+        extends JPanel {
 
     private Operand o;
 
@@ -22,7 +20,9 @@ public class Settings
         JRadioButton degButton = new JRadioButton();
         JRadioButton radButton = new JRadioButton();
         JCheckBox lightButton = new JCheckBox();
-        lightButton.addActionListener(this);
+        lightButton.addActionListener((ActionEvent e) -> {
+            o.setLightMode();
+        });
 
         JTextField degText
                 = new JTextField("Deg");
@@ -43,10 +43,5 @@ public class Settings
         this.add(degPanel);
         this.add(radPanel);
         this.add(lightPanel);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        this.o.setLightMode();
     }
 }
