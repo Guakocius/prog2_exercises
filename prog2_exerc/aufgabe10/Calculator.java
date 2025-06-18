@@ -1,5 +1,6 @@
 package aufgabe10;
 
+import java.awt.BorderLayout;
 import javax.swing.*;
 
 public class Calculator extends JFrame {
@@ -9,31 +10,25 @@ public class Calculator extends JFrame {
 
     public Calculator() {
 
-        GroupLayout layout = new GroupLayout(this);
-
-        this.setLayout(layout);
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
-
         this.setTitle("Taschenrechner");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(WIDTH, HEIGHT);
 
-        Operand operands = new Operand();
-        Settings settings = new Settings();
+        Operand o = new Operand();
+        Operations op = new Operations(o);
+        Settings settings = new Settings(o, op);
 
-        layout.setVerticalGroup(
-                layout.createSequentialGroup()
-                        .addGroup(
-                                layout.createParallelGroup(
-                                        GroupLayout.Alignment.BASELINE)
-                                        .add(operands)
-                                        .add(settings)
-                        )
-        );
+        JPanel contentPanel = new JPanel();
 
-        this.add(operands);
-        this.add(settings);
+        o.setAlignmentX(TOP_ALIGNMENT);
+        settings.setAlignmentX(TOP_ALIGNMENT);
+        op.setAlignmentX(TOP_ALIGNMENT);
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+
+        contentPanel.add(o, BorderLayout.NORTH);
+        contentPanel.add(settings, BorderLayout.CENTER);
+        contentPanel.add(op, BorderLayout.SOUTH);
+        this.add(contentPanel);
         this.setVisible(true);
 
     }
