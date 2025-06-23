@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 public class Operations extends JPanel {
 
     private Operand o = new Operand();
+    private Settings s = new Settings(o);
 
     private boolean isNumber(JTextField textField) {
         String text = textField.getText();
@@ -127,21 +128,24 @@ public class Operations extends JPanel {
             double valueX = 0;
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
             yText = "0";
+            this.o.yText.setText("0");
 
             if (!isNumber(this.o.xText) || !isNumber(this.o.yText)) {
                 this.o.resText.setText("");
                 return;
             }
+
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
+
             }
             this.o.yText.setText(yText);
-            this.o.resText.setText(Double.toString(Math.sin(valueX)));
-            System.out.println("Sin isDeg: " + settings.isDeg);
-            if (settings.isDeg) {
-                settings.toDeg(o);
-            } else {
-                settings.toRad(o);
+            if (this.s.degButton.isSelected()) {
+                this.o.resText.setText(Double.toString(Math.toDegrees(
+                        Math.sin(valueX))));
+            } else if (this.s.radButton.isSelected()) {
+                this.o.resText.setText(Double.toString(Math.toRadians(
+                        Math.sin(valueX))));
             }
         });
 
@@ -149,6 +153,7 @@ public class Operations extends JPanel {
             double valueX = 0;
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
             yText = "0";
+            this.o.yText.setText("0");
 
             if (!isNumber(this.o.xText) || !isNumber(this.o.yText)) {
                 this.o.resText.setText("");
@@ -156,15 +161,15 @@ public class Operations extends JPanel {
             }
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
+
+                if (this.s.degButton.isSelected()) {
+                    this.s.toDeg(valueX);
+                } else {
+                    this.s.toRad(valueX);
+                }
             }
             this.o.yText.setText(yText);
             this.o.resText.setText(Double.toString(Math.cos(valueX)));
-            System.out.println("Cos isDeg: " + settings.isDeg);
-            if (settings.isDeg) {
-                settings.toDeg(this.o);
-            } else {
-                settings.toRad(this.o);
-            }
         });
 
         exp.addActionListener(e -> {
@@ -189,6 +194,7 @@ public class Operations extends JPanel {
             double valueX = 0;
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
             yText = "0";
+            this.o.yText.setText("0");
 
             if (!isNumber(this.o.xText) || !isNumber(this.o.yText)) {
                 this.o.resText.setText("");

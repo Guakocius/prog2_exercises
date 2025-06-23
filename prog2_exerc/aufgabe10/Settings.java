@@ -11,10 +11,12 @@ import javax.swing.JRadioButton;
 public class Settings
         extends JPanel {
 
-    private Operand o = new Operand();
-    boolean isLightMode = true;
+    JRadioButton degButton;
+    JRadioButton radButton;
 
-    public boolean isDeg = true;
+    private Operand o = new Operand();
+
+    public boolean isDeg;
     Color defaultXColor;
     Color defaultYColor;
 
@@ -26,8 +28,8 @@ public class Settings
         JPanel radPanel = new JPanel();
         JPanel lightPanel = new JPanel();
 
-        JRadioButton degButton = new JRadioButton("Deg", true);
-        JRadioButton radButton = new JRadioButton("Rad", false);
+        degButton = new JRadioButton("Deg", true);
+        radButton = new JRadioButton("Rad", false);
         JCheckBox lightButton = new JCheckBox("Helles Display", true);
 
         o.setLightMode();
@@ -36,13 +38,11 @@ public class Settings
 
         lightButton.addActionListener(e -> {
             if (lightButton.isSelected()) {
-                isLightMode = true;
                 o.setLightMode();
                 defaultXColor = this.o.xText.getForeground();
                 defaultYColor = this.o.yText.getForeground();
 
             } else {
-                isLightMode = false;
                 o.setDarkMode();
                 defaultXColor = this.o.xText.getForeground();
                 defaultYColor = this.o.yText.getForeground();
@@ -55,14 +55,11 @@ public class Settings
 
         degButton.addActionListener(e -> {
             isDeg = true;
-
         });
 
         radButton.addActionListener(e -> {
             isDeg = false;
-
         });
-
         this.o.xText.addKeyListener(new KeyListener() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -106,24 +103,22 @@ public class Settings
         this.add(lightPanel);
     }
 
-    void toDeg(Operand o) {
+    void toDeg(double val) {
         try {
-            double val = Double.parseDouble(o.resText.getText());
-            o.resText.setText(Double.toString(Math.toDegrees(val)));
+            val = Math.toDegrees(val);
+            o.resText.setText(Double.toString(val));
         } catch (NumberFormatException e) {
             o.resText.setText("Ungültige Zahl!");
-            o.resText.setForeground(Color.RED);
+
         }
     }
 
-    void toRad(Operand o) {
+    void toRad(double val) {
         try {
-            double val = Double.parseDouble(o.resText.getText());
-            o.resText.setText(Double.toString(Math.toRadians(val)));
+            val = Math.toRadians(val);
+            o.resText.setText(Double.toString(val));
         } catch (NumberFormatException e) {
             o.resText.setText("Ungültige Zahl!");
-            o.resText.setForeground(Color.RED);
         }
     }
-
 }

@@ -14,7 +14,6 @@ public class Operand extends JPanel {
     public final JTextField yText;
     public final JTextField resText;
 
-
     public Operand() {
 
         final int WIDTH = 15;
@@ -41,7 +40,7 @@ public class Operand extends JPanel {
         resText.setBackground(Color.BLACK);
         resText.setForeground(Color.YELLOW);
 
-        
+
 
         operands.add(xLabel);
         operands.add(xText);
