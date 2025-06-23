@@ -15,7 +15,7 @@ public class Calculator extends JFrame {
 
         Operand o = new Operand();
         Operations op = new Operations(o);
-        Settings settings = new Settings(o, op);
+        Settings settings = new Settings(o);
 
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));

@@ -9,7 +9,22 @@ import javax.swing.JPanel;
 public class Operations extends JPanel {
 
     private Operand o = new Operand();
-    public boolean isSinCos = false;
+
+    private boolean isNumber(String text) {
+        try {
+            Double value;
+            if (text.equals("")) {
+                value = 0.0;
+            }
+
+            value = Double.parseDouble(text);
+            return true;
+
+        } catch (NumberFormatException e) {
+            System.err.printf("%s ist keine Zahl!\n", text);
+            return false;
+        }
+    }
 
     public Operations(Operand o) {
 
@@ -30,9 +45,16 @@ public class Operations extends JPanel {
         JButton clear = new JButton("Clear");
         JPanel clearRow = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
+        Settings settings = new Settings(o);
+
         plus.addActionListener(e -> {
             double valueX = 0, valueY = 0;
-            isSinCos = false;
+            String xText = this.o.xText.getText(), yText = this.o.yText.getText();
+
+            if (!isNumber(xText) | !isNumber(yText)) {
+                this.o.resText.setText("");
+                return;
+            }
 
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
@@ -47,8 +69,12 @@ public class Operations extends JPanel {
 
         times.addActionListener(e -> {
             double valueX = 0, valueY = 0;
-            isSinCos = false;
+            String xText = this.o.xText.getText(), yText = this.o.yText.getText();
 
+            if (!isNumber(xText) || !isNumber(yText)) {
+                this.o.resText.setText("");
+                return;
+            }
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
             }
@@ -61,12 +87,15 @@ public class Operations extends JPanel {
 
         minus.addActionListener(e -> {
             double valueX = 0, valueY = 0;
-            isSinCos = false;
+            String xText = this.o.xText.getText(), yText = this.o.yText.getText();
 
+            if (!isNumber(xText) | !isNumber(yText)) {
+                this.o.resText.setText("");
+                return;
+            }
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
             }
-
             if (!this.o.yText.getText().equals("")) {
                 valueY = Double.parseDouble(this.o.yText.getText());
             }
@@ -75,12 +104,15 @@ public class Operations extends JPanel {
 
         divide.addActionListener(e -> {
             double valueX = 0, valueY = 0;
-            isSinCos = false;
+            String xText = this.o.xText.getText(), yText = this.o.yText.getText();
 
+            if (!isNumber(xText) | !isNumber(yText)) {
+                this.o.resText.setText("");
+                return;
+            }
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
             }
-
             if (!this.o.yText.getText().equals("")) {
                 valueY = Double.parseDouble(this.o.yText.getText());
             }
@@ -89,30 +121,56 @@ public class Operations extends JPanel {
 
         sin.addActionListener(e -> {
             double valueX = 0;
-            isSinCos = true;
+            String xText = this.o.xText.getText(), yText = this.o.yText.getText();
+            yText = "0";
 
+            if (!isNumber(xText) | !isNumber(yText)) {
+                this.o.resText.setText("");
+                return;
+            }
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
             }
-            this.o.yText.setText("");
+            this.o.yText.setText(yText);
             this.o.resText.setText(Double.toString(Math.sin(valueX)));
+            System.out.println("Sin isDeg: " + settings.isDeg);
+            if (settings.isDeg) {
+                settings.toDeg(o);
+            } else {
+                settings.toRad(o);
+            }
         });
 
         cos.addActionListener(e -> {
             double valueX = 0;
-            isSinCos = true;
+            String xText = this.o.xText.getText(), yText = this.o.yText.getText();
+            yText = "0";
 
+            if (!isNumber(xText) | !isNumber(yText)) {
+                this.o.resText.setText("");
+                return;
+            }
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
             }
-            this.o.yText.setText("");
+            this.o.yText.setText(yText);
             this.o.resText.setText(Double.toString(Math.cos(valueX)));
+            System.out.println("Cos isDeg: " + settings.isDeg);
+            if (settings.isDeg) {
+                settings.toDeg(this.o);
+            } else {
+                settings.toRad(this.o);
+            }
         });
 
         exp.addActionListener(e -> {
             double valueX = 0, valueY = 0;
-            isSinCos = false;
+            String xText = this.o.xText.getText(), yText = this.o.yText.getText();
 
+            if (!isNumber(xText) | !isNumber(yText)) {
+                this.o.resText.setText("");
+                return;
+            }
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
             }
@@ -125,24 +183,29 @@ public class Operations extends JPanel {
 
         log.addActionListener(e -> {
             double valueX = 0;
-            isSinCos = false;
+            String xText = this.o.xText.getText(), yText = this.o.yText.getText();
+            yText = "0";
 
+            if (!isNumber(xText) | !isNumber(yText)) {
+                this.o.resText.setText("");
+                return;
+            }
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
             }
-            this.o.yText.setText("");
+            this.o.yText.setText(yText);
             this.o.resText.setText(Double.toString(Math.log10(valueX) / Math.log10(2)));
         });
 
         clear.addActionListener(e -> {
-            this.o.xText.setText("");
-            this.o.yText.setText("");
-            this.o.resText.setText("");
+            this.o.xText.setText("0");
+            this.o.yText.setText("0");
+            this.o.resText.setText("0");
 
         });
 
         JButton[] OperationButtons = {plus, times, minus, divide,
-                sin, cos, exp, log, clear};
+            sin, cos, exp, log, clear};
 
         for (JButton jb : OperationButtons) {
             jb.setPreferredSize(new Dimension(70, 40));

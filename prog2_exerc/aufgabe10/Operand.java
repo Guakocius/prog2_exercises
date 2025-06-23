@@ -1,4 +1,3 @@
-
 package aufgabe10;
 
 import java.awt.Color;
@@ -9,9 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 public class Operand extends JPanel {
-
 
     public final JTextField xText;
     public final JTextField yText;

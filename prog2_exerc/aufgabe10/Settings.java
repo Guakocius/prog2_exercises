@@ -1,5 +1,6 @@
 package aufgabe10;
 
+import java.awt.Color;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
@@ -9,12 +10,12 @@ public class Settings
         extends JPanel {
 
     private Operand o = new Operand();
-    private Operations op = new Operations(o);
 
-    public Settings(Operand o, Operations op) {
+    public boolean isDeg = true;
+
+    public Settings(Operand o) {
 
         this.o = o;
-        this.op = op;
 
         JPanel degPanel = new JPanel();
         JPanel radPanel = new JPanel();
@@ -37,23 +38,14 @@ public class Settings
         degRadGroup.add(degButton);
         degRadGroup.add(radButton);
 
-        /*while (degButton.isSelected()) {
-                System.out.println(this.op.isSinCos);
-                //degButton.addActionListener(e -> this.toDeg(o, this.op.isSinCos));
-                this.toDeg(o, this.op.isSinCos);
-        }
-        while (radButton.isSelected()) {
-                System.out.println(this.op.isSinCos);
-
-        }*/
         degButton.addActionListener(e -> {
-            System.out.println(this.op.isSinCos);
-            this.toDeg(o, this.op.isSinCos);
+            isDeg = true;
+
         });
 
         radButton.addActionListener(e -> {
-            System.out.println(this.op.isSinCos);
-            this.toRad(o, this.op.isSinCos);
+            isDeg = false;
+
         });
 
         degPanel.add(degButton);
@@ -67,18 +59,24 @@ public class Settings
         this.add(lightPanel);
     }
 
-    void toDeg(Operand o, boolean isSinCos) {
-        if (isSinCos) {
-            Math.toDegrees(Double.parseDouble(o.resText.getText()));
+    void toDeg(Operand o) {
+        try {
+            double val = Double.parseDouble(o.resText.getText());
+            o.resText.setText(Double.toString(Math.toDegrees(val)));
+        } catch (NumberFormatException e) {
+            o.resText.setText("Ungültige Zahl!");
+            o.resText.setForeground(Color.RED);
         }
-
     }
 
-    void toRad(Operand o, boolean isSinCos) {
-        if (isSinCos) {
-            Math.toRadians(Double.parseDouble(o.resText.getText()));
+    void toRad(Operand o) {
+        try {
+            double val = Double.parseDouble(o.resText.getText());
+            o.resText.setText(Double.toString(Math.toRadians(val)));
+        } catch (NumberFormatException e) {
+            o.resText.setText("Ungültige Zahl!");
+            o.resText.setForeground(Color.RED);
         }
-
     }
 
 }
