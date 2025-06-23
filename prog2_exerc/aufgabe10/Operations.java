@@ -137,8 +137,7 @@ public class Operations extends JPanel {
 
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
-                double resD = Math.toDegrees(valueX);
-                double sD = Math.sin(resD);
+                double sD = Math.sin(valueX);
                 double resR = Math.toRadians(valueX);
                 double sR = Math.sin(resR);
                 this.o.yText.setText(yText);
@@ -163,8 +162,7 @@ public class Operations extends JPanel {
             }
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
-                double resD = Math.toDegrees(valueX);
-                double cD = Math.cos(resD);
+                double cD = Math.cos(valueX);
                 double resR = Math.toRadians(valueX);
                 double cR = Math.cos(resR);
                 if (this.o.isDeg) {
