@@ -41,8 +41,6 @@ public class Operand extends JPanel {
         resText.setBackground(Color.BLACK);
         resText.setForeground(Color.YELLOW);
 
-
-
         operands.add(xLabel);
         operands.add(xText);
         operands.add(yLabel);

@@ -26,7 +26,6 @@ public class Calculator extends JFrame {
 
         this.add(contentPanel);
         this.setVisible(true);
-
     }
 
     public static void main(String[] args) {

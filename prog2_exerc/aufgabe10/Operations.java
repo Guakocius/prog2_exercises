@@ -134,7 +134,6 @@ public class Operations extends JPanel {
                 return;
             }
 
-
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
                 double sD = Math.sin(valueX);
@@ -220,7 +219,7 @@ public class Operations extends JPanel {
             sin, cos, exp, log, clear};
 
         for (JButton jb : OperationButtons) {
-            jb.setPreferredSize(new Dimension(70, 40));
+            jb.setPreferredSize(new Dimension(100, 50));
         }
 
         firstRow.add(plus);
@@ -239,6 +238,5 @@ public class Operations extends JPanel {
         this.add(firstRow);
         this.add(secondRow);
         this.add(clearRow);
-
     }
 }
