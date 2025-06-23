@@ -1,6 +1,7 @@
 package aufgabe10;
 
-import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -18,16 +19,16 @@ public class Operations extends JPanel {
         JButton times = new JButton("*");
         JButton minus = new JButton("-");
         JButton divide = new JButton("/");
-        JPanel firstRow = new JPanel();
+        JPanel firstRow = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
         JButton sin = new JButton("sin");
         JButton cos = new JButton("cos");
         JButton exp = new JButton("x^y");
         JButton log = new JButton("log2");
-        JPanel secondRow = new JPanel();
+        JPanel secondRow = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
         JButton clear = new JButton("Clear");
-        JPanel clearRow = new JPanel();
+        JPanel clearRow = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
         plus.addActionListener(e -> {
             double valueX = 0, valueY = 0;
@@ -140,6 +141,13 @@ public class Operations extends JPanel {
 
         });
 
+        JButton[] OperationButtons = {plus, times, minus, divide,
+                sin, cos, exp, log, clear};
+
+        for (JButton jb : OperationButtons) {
+            jb.setPreferredSize(new Dimension(70, 40));
+        }
+
         firstRow.add(plus);
         firstRow.add(times);
         firstRow.add(minus);
@@ -152,14 +160,10 @@ public class Operations extends JPanel {
 
         clearRow.add(clear);
 
-        firstRow.setAlignmentX(CENTER_ALIGNMENT);
-        secondRow.setAlignmentX(CENTER_ALIGNMENT);
-        clearRow.setAlignmentX(CENTER_ALIGNMENT);
-
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.add(firstRow, BorderLayout.NORTH);
-        this.add(secondRow, BorderLayout.CENTER);
-        this.add(clearRow, BorderLayout.SOUTH);
+        this.add(firstRow);
+        this.add(secondRow);
+        this.add(clearRow);
 
     }
 }

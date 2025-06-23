@@ -1,6 +1,5 @@
 package aufgabe10;
 
-import java.awt.BorderLayout;
 import javax.swing.*;
 
 public class Calculator extends JFrame {
@@ -19,15 +18,12 @@ public class Calculator extends JFrame {
         Settings settings = new Settings(o, op);
 
         JPanel contentPanel = new JPanel();
-
-        o.setAlignmentX(TOP_ALIGNMENT);
-        settings.setAlignmentX(TOP_ALIGNMENT);
-        op.setAlignmentX(TOP_ALIGNMENT);
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
 
-        contentPanel.add(o, BorderLayout.NORTH);
-        contentPanel.add(settings, BorderLayout.CENTER);
-        contentPanel.add(op, BorderLayout.SOUTH);
+        contentPanel.add(o);
+        contentPanel.add(settings);
+        contentPanel.add(op);
+
         this.add(contentPanel);
         this.setVisible(true);
 

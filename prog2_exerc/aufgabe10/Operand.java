@@ -25,7 +25,7 @@ public class Operand extends JPanel {
 
         JPanel operands = new JPanel(new GridLayout(rows, cols, hgap, vgap));
 
-        this.setLayout(new FlowLayout(FlowLayout.LEADING, hgap, vgap));
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, hgap, vgap));
 
         JLabel xLabel = new JLabel("Operand x");
         xText = new JTextField(WIDTH);

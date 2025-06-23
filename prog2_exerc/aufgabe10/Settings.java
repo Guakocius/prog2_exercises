@@ -4,7 +4,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
 public class Settings
         extends JPanel {
@@ -21,9 +20,9 @@ public class Settings
         JPanel radPanel = new JPanel();
         JPanel lightPanel = new JPanel();
 
-        JRadioButton degButton = new JRadioButton();
-        JRadioButton radButton = new JRadioButton();
-        JCheckBox lightButton = new JCheckBox();
+        JRadioButton degButton = new JRadioButton("Deg", true);
+        JRadioButton radButton = new JRadioButton("Rad", false);
+        JCheckBox lightButton = new JCheckBox("Helles Display", true);
         lightButton.addActionListener(e -> {
             if (lightButton.isSelected()) {
                 o.setLightMode();
@@ -46,29 +45,20 @@ public class Settings
 
         }*/
         degButton.addActionListener(e -> {
-                System.out.println(this.op.isSinCos);
-                this.toDeg(o, this.op.isSinCos);
+            System.out.println(this.op.isSinCos);
+            this.toDeg(o, this.op.isSinCos);
         });
 
         radButton.addActionListener(e -> {
-                System.out.println(this.op.isSinCos);
-                this.toRad(o, this.op.isSinCos);
+            System.out.println(this.op.isSinCos);
+            this.toRad(o, this.op.isSinCos);
         });
-        JTextField degText
-                = new JTextField("Deg");
-        JTextField radText
-                = new JTextField("Rad");
-        JTextField lightText
-                = new JTextField("Helles Display");
 
         degPanel.add(degButton);
-        degPanel.add(degText);
 
         radPanel.add(radButton);
-        radPanel.add(radText);
 
         lightPanel.add(lightButton);
-        lightPanel.add(lightText);
 
         this.add(degPanel);
         this.add(radPanel);
