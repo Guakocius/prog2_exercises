@@ -14,6 +14,7 @@ public class Operand extends JPanel {
     public final JTextField yText;
     public final JTextField resText;
 
+
     public Operand() {
 
         final int WIDTH = 15;
@@ -26,34 +27,21 @@ public class Operand extends JPanel {
 
         JLabel xLabel = new JLabel("Operand x");
         xText = new JTextField(WIDTH);
-        //JPanel xPanel = new JPanel();
         xText.setBackground(Color.BLACK);
         xText.setForeground(Color.YELLOW);
 
         JLabel yLabel = new JLabel("Operand y");
         yText = new JTextField(WIDTH);
-        //JPanel yPanel = new JPanel();
         yText.setBackground(Color.BLACK);
         yText.setForeground(Color.YELLOW);
 
         JLabel resLabel = new JLabel("Resultat");
         resText = new JTextField(WIDTH);
-        //JPanel resPanel = new JPanel();
+
         resText.setBackground(Color.BLACK);
         resText.setForeground(Color.YELLOW);
 
-        /*xPanel.add(xLabel);
-        xPanel.add(xText);
-
-        yPanel.add(yLabel);
-        yPanel.add(yText);
-
-        resPanel.add(resLabel);
-        resPanel.add(resText);
-
-        this.add(xPanel);
-        this.add(yPanel);
-        this.add(resPanel);*/
+        
 
         operands.add(xLabel);
         operands.add(xText);

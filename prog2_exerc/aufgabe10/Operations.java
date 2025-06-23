@@ -1,16 +1,19 @@
 package aufgabe10;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Operations extends JPanel {
 
     private Operand o = new Operand();
 
-    private boolean isNumber(String text) {
+    private boolean isNumber(JTextField textField) {
+        String text = textField.getText();
         try {
             Double value;
             if (text.equals("")) {
@@ -21,7 +24,8 @@ public class Operations extends JPanel {
             return true;
 
         } catch (NumberFormatException e) {
-            System.err.printf("%s ist keine Zahl!\n", text);
+            textField.setText(text + " ist keine Zahl!");
+            textField.setForeground(Color.RED);
             return false;
         }
     }
@@ -51,7 +55,7 @@ public class Operations extends JPanel {
             double valueX = 0, valueY = 0;
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
 
-            if (!isNumber(xText) | !isNumber(yText)) {
+            if (!isNumber(this.o.xText) | !isNumber(this.o.yText)) {
                 this.o.resText.setText("");
                 return;
             }
@@ -71,7 +75,7 @@ public class Operations extends JPanel {
             double valueX = 0, valueY = 0;
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
 
-            if (!isNumber(xText) || !isNumber(yText)) {
+            if (!isNumber(this.o.xText) || !isNumber(this.o.yText)) {
                 this.o.resText.setText("");
                 return;
             }
@@ -89,7 +93,7 @@ public class Operations extends JPanel {
             double valueX = 0, valueY = 0;
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
 
-            if (!isNumber(xText) | !isNumber(yText)) {
+            if (!isNumber(this.o.xText) || !isNumber(this.o.yText)) {
                 this.o.resText.setText("");
                 return;
             }
@@ -106,7 +110,7 @@ public class Operations extends JPanel {
             double valueX = 0, valueY = 0;
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
 
-            if (!isNumber(xText) | !isNumber(yText)) {
+            if (!isNumber(this.o.xText) || !isNumber(this.o.yText)) {
                 this.o.resText.setText("");
                 return;
             }
@@ -124,7 +128,7 @@ public class Operations extends JPanel {
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
             yText = "0";
 
-            if (!isNumber(xText) | !isNumber(yText)) {
+            if (!isNumber(this.o.xText) || !isNumber(this.o.yText)) {
                 this.o.resText.setText("");
                 return;
             }
@@ -146,7 +150,7 @@ public class Operations extends JPanel {
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
             yText = "0";
 
-            if (!isNumber(xText) | !isNumber(yText)) {
+            if (!isNumber(this.o.xText) || !isNumber(this.o.yText)) {
                 this.o.resText.setText("");
                 return;
             }
@@ -167,7 +171,7 @@ public class Operations extends JPanel {
             double valueX = 0, valueY = 0;
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
 
-            if (!isNumber(xText) | !isNumber(yText)) {
+            if (!isNumber(this.o.xText) || !isNumber(this.o.yText)) {
                 this.o.resText.setText("");
                 return;
             }
@@ -186,7 +190,7 @@ public class Operations extends JPanel {
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
             yText = "0";
 
-            if (!isNumber(xText) | !isNumber(yText)) {
+            if (!isNumber(this.o.xText) || !isNumber(this.o.yText)) {
                 this.o.resText.setText("");
                 return;
             }
