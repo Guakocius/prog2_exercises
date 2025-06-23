@@ -13,6 +13,7 @@ public class Operand extends JPanel {
     public final JTextField xText;
     public final JTextField yText;
     public final JTextField resText;
+    public boolean isDeg = true;
 
     public Operand() {
 

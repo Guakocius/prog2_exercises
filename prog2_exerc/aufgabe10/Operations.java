@@ -32,7 +32,6 @@ public class Operations extends JPanel {
     }
 
     public Operations(Operand o) {
-
         this.o = o;
 
         JButton plus = new JButton("+");
@@ -135,17 +134,19 @@ public class Operations extends JPanel {
                 return;
             }
 
+
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
-
-            }
-            this.o.yText.setText(yText);
-            if (this.s.degButton.isSelected()) {
-                this.o.resText.setText(Double.toString(Math.toDegrees(
-                        Math.sin(valueX))));
-            } else if (this.s.radButton.isSelected()) {
-                this.o.resText.setText(Double.toString(Math.toRadians(
-                        Math.sin(valueX))));
+                double resD = Math.toDegrees(valueX);
+                double sD = Math.sin(resD);
+                double resR = Math.toRadians(valueX);
+                double sR = Math.sin(resR);
+                this.o.yText.setText(yText);
+                if (this.o.isDeg) {
+                    this.o.resText.setText(Double.toString(sD));
+                } else {
+                    this.o.resText.setText(Double.toString(sR));
+                } 
             }
         });
 
@@ -154,6 +155,7 @@ public class Operations extends JPanel {
             String xText = this.o.xText.getText(), yText = this.o.yText.getText();
             yText = "0";
             this.o.yText.setText("0");
+            this.o.yText.setText(yText);
 
             if (!isNumber(this.o.xText) || !isNumber(this.o.yText)) {
                 this.o.resText.setText("");
@@ -161,15 +163,17 @@ public class Operations extends JPanel {
             }
             if (!this.o.xText.getText().equals("")) {
                 valueX = Double.parseDouble(this.o.xText.getText());
-
-                if (this.s.degButton.isSelected()) {
-                    this.s.toDeg(valueX);
+                double resD = Math.toDegrees(valueX);
+                double cD = Math.cos(resD);
+                double resR = Math.toRadians(valueX);
+                double cR = Math.cos(resR);
+                if (this.o.isDeg) {
+                    this.o.resText.setText(Double.toString(cD));
                 } else {
-                    this.s.toRad(valueX);
+                    this.o.resText.setText(Double.toString(cR));
                 }
+
             }
-            this.o.yText.setText(yText);
-            this.o.resText.setText(Double.toString(Math.cos(valueX)));
         });
 
         exp.addActionListener(e -> {

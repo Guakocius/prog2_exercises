@@ -16,7 +16,6 @@ public class Settings
 
     private Operand o = new Operand();
 
-    public boolean isDeg;
     Color defaultXColor;
     Color defaultYColor;
 
@@ -53,12 +52,15 @@ public class Settings
         degRadGroup.add(degButton);
         degRadGroup.add(radButton);
 
+
         degButton.addActionListener(e -> {
-            isDeg = true;
+            o.isDeg = true;
+            // System.out.println("Selected: " + o.isDeg);
         });
 
         radButton.addActionListener(e -> {
-            isDeg = false;
+            o.isDeg = false;
+            // System.out.println("Selected: " + o.isDeg);
         });
         this.o.xText.addKeyListener(new KeyListener() {
             @Override
