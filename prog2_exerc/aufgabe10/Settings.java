@@ -23,6 +23,8 @@ public class Settings
         JRadioButton degButton = new JRadioButton("Deg", true);
         JRadioButton radButton = new JRadioButton("Rad", false);
         JCheckBox lightButton = new JCheckBox("Helles Display", true);
+
+        o.setLightMode();
         lightButton.addActionListener(e -> {
             if (lightButton.isSelected()) {
                 o.setLightMode();
