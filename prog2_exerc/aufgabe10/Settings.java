@@ -104,23 +104,4 @@ public class Settings
         this.add(radPanel);
         this.add(lightPanel);
     }
-
-    void toDeg(double val) {
-        try {
-            val = Math.toDegrees(val);
-            o.resText.setText(Double.toString(val));
-        } catch (NumberFormatException e) {
-            o.resText.setText("Ungültige Zahl!");
-
-        }
-    }
-
-    void toRad(double val) {
-        try {
-            val = Math.toRadians(val);
-            o.resText.setText(Double.toString(val));
-        } catch (NumberFormatException e) {
-            o.resText.setText("Ungültige Zahl!");
-        }
-    }
 }

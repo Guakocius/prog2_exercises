@@ -1,4 +1,4 @@
-package aufgabe10;
+package aufgabe11.teil1;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -144,7 +144,7 @@ public class Operations extends JPanel {
                     this.o.resText.setText(Double.toString(sD));
                 } else {
                     this.o.resText.setText(Double.toString(sR));
-                } 
+                }
             }
         });
 

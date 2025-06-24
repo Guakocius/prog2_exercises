@@ -1,4 +1,4 @@
-package aufgabe10;
+package aufgabe11.teil1;
 
 import javax.swing.*;
 
